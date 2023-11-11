@@ -6,8 +6,6 @@
         private $user = 'root';
         private $password = '';
 
-
-
         protected $conn;
 
         public function __construct() {
