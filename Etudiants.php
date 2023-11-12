@@ -7,11 +7,9 @@
     $etudiantDB = new C_etudiant();
 
 
-
     if($do == 'Manage'){ 
             $pageTitle = 'Manage etudiants';
             $students = $etudiantDB->getAllStudents();
-
         ?>
         <h1 class="text-center mb-5 mt-4">Manage  Etudiants</h1>
         <div class="container">
@@ -58,9 +56,9 @@
             </div>
             <a href="Etudiants.php?do=Add" class="btn btn-primary">
             <i class="fa fa-plus"></i> Edit an etudiant</a>
-        </div>
+        </div> <?php 
 
-    <?php 
+   
     }else if($do == "Add"){
         $pageTitle = 'Add new etudiant';
         ?>
@@ -379,11 +377,11 @@
 
             if ($updateResult > 0) {
                 echo '<div class="alert mb-3 alert-success">Record updated successfully!</div>';
-                redirectHome("Etudiants.php",3);
+                redirectHome("You will be redirected To ","Etudiants.php",3);
                 exit();
             } else {
                 echo '<div class="alert alert-danger">Error updating record.</div>';
-                redirectHome("Etudiants.php",3);
+                redirectHome("You will be redirected To ","Etudiants.php",3);
             }    
             
             }
@@ -419,9 +417,5 @@
 
         echo '</div>';
 
-    } else if ($do == 'Activate'){
-
-
     }
-
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 
-class Etudiant extends Database {
+class C_etudiant extends Database {
 
     public function addEtudiant($nom, $prenom, $dateNaissance, $codeClass, $numInscription, $address, $mail, $tel) {
         $data = [

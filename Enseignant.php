@@ -118,7 +118,10 @@
                     <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade">
                 </div>
             </div>
+            <div class="d-flex gap-2 ">
             <button type="submit" class="btn btn-primary">Add Enseignant</button>
+            <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
+            </div>
         </form>
     </div>
 
