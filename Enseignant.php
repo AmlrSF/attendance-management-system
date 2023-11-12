@@ -10,6 +10,7 @@
 
     if($do == 'Manage'){ 
         $enseignants = $enseignantDB->getAllEnseignants();
+    
     ?>
 
     <h1 class="text-center mb-5 mt-4">Manage Enseignants</h1>
@@ -60,14 +61,14 @@
         <a href="Enseignant.php?do=Add" class="btn btn-primary">
             <i class="fa fa-plus"></i> Add an Enseignant
         </a>
-    </div>
+    </div><?php 
 
-    <?php 
+    
     }else if($do == "Add"){
         $pageTitle = 'Add new enseignant';
         ?>
         
-        <h1 class="text-center mb-5 mt-4">Add New Enseignant</h1>
+    <h1 class="text-center mb-5 mt-4">Add New Enseignant</h1>
     <div class="container">
         <form class="edit-form" action='?do=Insert' method="POST" enctype='multipart/form-data'>
             <div class="mb-3 row">
@@ -123,9 +124,7 @@
             <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
             </div>
         </form>
-    </div>
-
-        <?php
+    </div><?php
     }else if($do == 'Insert'){
 
 
@@ -195,6 +194,7 @@
     
                 if ($check == 1) {
                     echo "<div class='alert alert-success'>Enseignant with the same Prenom already exists in the database.</div>";
+                    redirectHome("you will be directed To ", 'back', 3);
                 } else {
                     // Insert a new enseignant
                     $insertResult = $enseignantDB->addEnseignant(
@@ -230,7 +230,7 @@
         ?>
     <h1 class="text-center mb-5 mt-4">Edit Enseignant</h1>
     <div class="container">
-        <form class="edit-form" action='?do=UpdateEnseignant&enseignantId=<?= $enseignantId ?>' method="POST" enctype='multipart/form-data'>
+        <form class="edit-form" action='?do=Update&enseignantId=<?= $enseignantId ?>' method="POST" enctype='multipart/form-data'>
             
             <div class="mb-3 row">
                 <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
@@ -286,8 +286,145 @@
      <?php   
     }else if($do == 'Update'){
 
+    echo '<div class="container">';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
+        echo '<h1 class="text-center mb-5 mt-4">Update Enseignant</h1>';
+
+    
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $dateRecrutement = $_POST['daterecrutement'];
+        $address = $_POST['address'];
+        $email = $_POST['email'];
+        $tel = $_POST['tel'];
+        $codeDepartement = $_POST['codedepartement'];
+        $codeGrade = $_POST['codegrade'];
         
+
+        $formErrors = array();
+
+        // Validate Nom
+        if (empty($nom)) {
+            $formErrors[] = 'Nom cannot be empty';
+        }
+
+        // Validate Prenom
+        if (empty($prenom)) {
+            $formErrors[] = 'Prenom cannot be empty';
+        }
+
+        // Validate DateRecrutement
+        if (empty($dateRecrutement)) {
+            $formErrors[] = 'Date Recrutement cannot be empty';
+        }
+
+        // Validate Address
+        if (empty($address)) {
+            $formErrors[] = 'Address cannot be empty';
+        }
+
+        // Validate Email
+        if (empty($email)) {
+            $formErrors[] = 'Email cannot be empty';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $formErrors[] = 'Invalid email format';
+        }
+
+        // Validate Tel
+        if (empty($tel)) {
+            $formErrors[] = 'Tel cannot be empty';
+        }
+
+        // Validate CodeDepartement
+        if (empty($codeDepartement)) {
+            $formErrors[] = 'Code Departement cannot be empty';
+        }
+
+        // Validate CodeGrade
+        if (empty($codeGrade)) {
+            $formErrors[] = 'Code Grade cannot be empty';
+        }
+
+        // Display form errors
+        foreach ($formErrors as $error) {
+            echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
+        }
+
+        
+        if (empty($formErrors)) {
+            
+
+            $updateResult = $enseignantDB->editRecordById('enseignant', 'CodeEnseignant', $enseignantId, [
+                'Nom' => $nom,
+                'Prenom' => $prenom,
+                'DateRecrutement' => $dateRecrutement,
+                'Address' => $address,
+                'Mail' => $email,
+                'Tel' => $tel,
+                'CodeDepartement' => $codeDepartement,
+                'CodeGrade' => $codeGrade,
+            ]);
+
+            // Check update result
+            if ($updateResult > 0) {
+                echo '<div class="alert mb-3 alert-success">Record updated successfully!</div>';
+                redirectHome("You will be redirect to ","Enseignant.php",3);
+            } else {
+                echo '<div class="alert alert-danger">Error updating record.</div>';
+                redirectHome("You will be redirect to ","Enseignant.php",3);
+            }
+        }
+        } else {
+            $theMsg = '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
+            redirectHome("You can't access to this page ","Enseignant.php",3);
+        }
+
+echo "</div>";
+
     }else if($do == "Delete"){
+        $pageTitle = 'Delete Enseignant';
+        $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
+        $enseignantData = $enseignantDB->getEnseignantById('CodeEnseignant', $enseignantId);
+        echo '<div class="container">';
+        echo '<h1 class="text-center mb-5 mt-4">Delete Enseignant</h1>';
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                
+                $confirmDelete = isset($_POST['confirm-delete']) ? $_POST['confirm-delete'] : '';
+        
+                if ($confirmDelete === 'Yes') {
+                    
+                    $deleteResult = $enseignantDB->deleteRecordById('enseignant', 'CodeEnseignant', $enseignantId);
+        
+                    if ($deleteResult > 0) {
+                        echo '<div class="alert mb-3 alert-success">Record deleted successfully!</div>';
+                        redirectHome("you will be redirect to ", 'back', 3);
+                        
+                    } else {
+                        echo '<div class="alert alert-danger">Error deleting record.</div>';
+                        redirectHome("you will be redirect to ", 'back', 3);
+                    }
+                } else {
+                    $theMsg = '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';
+                    redirectHome($theMsg);
+                }
+            } else {
+                ?>
+                <div class="container">
+                    <form class="delete-form" action="?do=Delete&enseignantId=<?= $enseignantId ?>" method="POST">
+                        <p class="lead">Are you sure you want to delete this Enseignant?</p>
+                        <div class="mb-3 row">
+                            <div class="col-sm-10 col-md-4">
+                                <button type="submit" class="btn btn-danger" name="confirm-delete" value="Yes">Yes</button>
+                                <a href="?do=ManageEnseignants" class="btn btn-secondary">No</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <?php
+            }
+        echo '</div>';    
     }
 
 ?>

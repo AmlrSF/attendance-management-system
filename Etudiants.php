@@ -389,33 +389,54 @@
           echo "</div>";
         
     }else if($do == "Delete"){
+        
         echo '<div class="container">';
-        echo '<h1 class="text-center mb-5 mt-4">Delete Members</h1>';
-
+        echo '<h1 class="text-center mb-5 mt-4">Delete Etudiant</h1>';
         
         $etudiantId = isset($_GET['etudiantId']) ? $_GET['etudiantId'] : null;
-
-       
-        $check = $etudiantDB->checkItem("CodeEtudiant", "etudiant", $etudiantId);
-
-        if ($check == 1) {
         
-            $result = $etudiantDB->deleteRecordById('etudiant', 'CodeEtudiant', $etudiantId);
-
-            if ($result > 0) {
-                echo "<div class='alert alert-success'>Etudiant successfully deleted from the database</div>";
-                redirectHome("you will be redirect to ", 'back', 4);
+        $check = $etudiantDB->checkItem("CodeEtudiant", "etudiant", $etudiantId);
+        
+        if ($check == 1) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                
+                $confirmDelete = isset($_POST['confirm-delete']) ? $_POST['confirm-delete'] : '';
+        
+                if ($confirmDelete === 'Yes') {
+                    
+                    $result = $etudiantDB->deleteRecordById('etudiant', 'CodeEtudiant', $etudiantId);
+        
+                    if ($result > 0) {
+                        echo "<div class='alert alert-success'>Etudiant successfully deleted from the database</div>";
+                        redirectHome("you will be redirect to ", 'back', 4);
+                    } else {
+                        echo "<div class='alert alert-danger'>Error deleting Etudiant from the database</div>";
+                        redirectHome("you will be redirect to ", 'back', 4);
+                    }
+                } else {
+                    $theMsg = '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';
+                    redirectHome($theMsg);
+                }
             } else {
-                echo "<div class='alert alert-danger'>Error deleting Etudiant from the database</div>";
-                redirectHome("you will be redirect to ", 'back', 4);
+                
+                ?>
+                <form class="delete-form" action="?do=Delete&etudiantId=<?= $etudiantId ?>" method="POST">
+                    <p class="lead">Are you sure you want to delete this Etudiant?</p>
+                    <div class="mb-3 row">
+                        <div class="col-sm-10 col-md-4">
+                            <button type="submit" class="btn btn-danger" name="confirm-delete" value="Yes">Yes</button>
+                            <a href="?do=ManageEtudiants" class="btn btn-secondary">No</a>
+                        </div>
+                    </div>
+                </form>
+                <?php
             }
         } else {
-            
             echo '<div class="alert mt-5 alert-danger">There is no such Etudiant with ID: ' . $etudiantId . '</div>';
             redirectHome("you will be redirect to ", 'back', 4);
         }
-
+        
         echo '</div>';
-
+        
     }
 ?>
