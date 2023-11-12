@@ -6,7 +6,6 @@
 
     $etudiantDB = new C_etudiant();
 
-
     if($do == 'Manage'){ 
             $pageTitle = 'Manage etudiants';
             $students = $etudiantDB->getAllStudents();
@@ -59,7 +58,7 @@
         </div> <?php 
 
    
-    }else if($do == "Add"){
+    } else if($do == "Add"){
         $pageTitle = 'Add new etudiant';
         ?>
         
@@ -121,7 +120,7 @@
             </form>
         </div>
         <?php
-    }else if($do == 'Insert'){
+    } else if($do == 'Insert'){
 
         echo '<div class="container">';
         
@@ -234,7 +233,7 @@
         
     
         
-    }else if($do == 'Edit'){ 
+    } else if($do == 'Edit'){ 
         $pageTitle = 'edit an etudiant';
         $etudiantId = isset($_GET['etudiantId']) ? $_GET['etudiantId'] : null;
         $etudiantData = $etudiantDB->getEtudiantById('CodeEtudiant', $etudiantId);
@@ -296,7 +295,7 @@
         </div>       
 
      <?php   
-    }else if($do == 'Update'){
+    } else if($do == 'Update'){
 
         
         echo '<div class="container">';
@@ -388,7 +387,7 @@
         }    
           echo "</div>";
         
-    }else if($do == "Delete"){
+    } else if($do == "Delete"){
         
         echo '<div class="container">';
         echo '<h1 class="text-center mb-5 mt-4">Delete Etudiant</h1>';

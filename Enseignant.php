@@ -6,126 +6,124 @@
 
     $enseignantDB = new C_enseignant();
 
-
-
     if($do == 'Manage'){ 
         $enseignants = $enseignantDB->getAllEnseignants();
     
-    ?>
+        ?>
 
-    <h1 class="text-center mb-5 mt-4">Manage Enseignants</h1>
-    <div class="container">
-        <div class="table-responsive-sm">
-            <table class="dark-table table table-hover">
-                <
-                <thead>
-                    <tr class="bg-dark">
-                        <th class="text-center py-3 bg-primary text-white" scope="col">#ID</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Last name</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">First name</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Date Recrutement</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Address</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Mail</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Tel</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Code Departement</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Code Grade</th>
-                        <th class="text-center py-3 bg-primary text-white" scope="col">Control</th>
-                    </tr>
-                </thead>
-                <!-- Data Rows -->
-                <tbody>
-                    <?php foreach ($enseignants as $index => $enseignant) : ?>
-                        <tr>
-                            <td class="text-center">#<?= $index + 1 ?></td>
-                            <td class="text-center"><?= $enseignant['Nom'] ?></td>
-                            <td class="text-center"><?= $enseignant['Prenom'] ?></td>
-                            <td class="text-center"><?= $enseignant['DateRecrutement'] ?></td>
-                            <td class="text-center"><?= $enseignant['Address'] ?></td>
-                            <td class="text-center"><?= $enseignant['Mail'] ?></td>
-                            <td class="text-center"><?= $enseignant['Tel'] ?></td>
-                            <td class="text-center"><?= $enseignant['CodeDepartement'] ?></td>
-                            <td class="text-center"><?= $enseignant['CodeGrade'] ?></td>
-                            <td class="text-center d-flex gap-2 ">
-                                <a href="Enseignant.php?do=Edit&enseignantId=<?= $enseignant['CodeEnseignant'] ?>" class="btn btn-success d-flex btn-sm align-items-center gap-2">
-                                    Edit<i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="Enseignant.php?do=Delete&enseignantId=<?= $enseignant['CodeEnseignant'] ?>" class="btn btn-danger d-flex btn-sm align-items-center gap-2">
-                                    Delete<i class="fa-solid fa-trash"></i>
-                                </a>
-                            </td>
+        <h1 class="text-center mb-5 mt-4">Manage Enseignants</h1>
+        <div class="container">
+            <div class="table-responsive-sm">
+                <table class="dark-table table table-hover">
+                    <
+                    <thead>
+                        <tr class="bg-dark">
+                            <th class="text-center py-3 bg-primary text-white" scope="col">#ID</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Last name</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">First name</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Date Recrutement</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Address</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Mail</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Tel</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Code Departement</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Code Grade</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Control</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-        <a href="Enseignant.php?do=Add" class="btn btn-primary">
-            <i class="fa fa-plus"></i> Add an Enseignant
-        </a>
-    </div><?php 
+                    </thead>
+                    <!-- Data Rows -->
+                    <tbody>
+                        <?php foreach ($enseignants as $index => $enseignant) : ?>
+                            <tr>
+                                <td class="text-center">#<?= $index + 1 ?></td>
+                                <td class="text-center"><?= $enseignant['Nom'] ?></td>
+                                <td class="text-center"><?= $enseignant['Prenom'] ?></td>
+                                <td class="text-center"><?= $enseignant['DateRecrutement'] ?></td>
+                                <td class="text-center"><?= $enseignant['Address'] ?></td>
+                                <td class="text-center"><?= $enseignant['Mail'] ?></td>
+                                <td class="text-center"><?= $enseignant['Tel'] ?></td>
+                                <td class="text-center"><?= $enseignant['CodeDepartement'] ?></td>
+                                <td class="text-center"><?= $enseignant['CodeGrade'] ?></td>
+                                <td class="text-center d-flex gap-2 ">
+                                    <a href="Enseignant.php?do=Edit&enseignantId=<?= $enseignant['CodeEnseignant'] ?>" class="btn btn-success d-flex btn-sm align-items-center gap-2">
+                                        Edit<i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="Enseignant.php?do=Delete&enseignantId=<?= $enseignant['CodeEnseignant'] ?>" class="btn btn-danger d-flex btn-sm align-items-center gap-2">
+                                        Delete<i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <a href="Enseignant.php?do=Add" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Add an Enseignant
+            </a>
+        </div><?php 
 
     
-    }else if($do == "Add"){
+    } else if($do == "Add"){
         $pageTitle = 'Add new enseignant';
         ?>
         
-    <h1 class="text-center mb-5 mt-4">Add New Enseignant</h1>
-    <div class="container">
-        <form class="edit-form" action='?do=Insert' method="POST" enctype='multipart/form-data'>
-            <div class="mb-3 row">
-                <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter nom" required="required" type="text" name="nom" class="form-control" id="inputNom">
+        <h1 class="text-center mb-5 mt-4">Add New Enseignant</h1>
+        <div class="container">
+            <form class="edit-form" action='?do=Insert' method="POST" enctype='multipart/form-data'>
+                <div class="mb-3 row">
+                    <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter nom" required="required" type="text" name="nom" class="form-control" id="inputNom">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPrenom" class="col-sm-2 col-form-label">Prenom</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter prenom" required='required' type="text" name='prenom' class="form-control" id="inputPrenom">
+                <div class="mb-3 row">
+                    <label for="inputPrenom" class="col-sm-2 col-form-label">Prenom</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter prenom" required='required' type="text" name='prenom' class="form-control" id="inputPrenom">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputDateRecrutement" class="col-sm-2 col-form-label">Date Recrutement</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter date de recrutement" required="required" type="date" name="daterecrutement" class="form-control" id="inputDateRecrutement">
+                <div class="mb-3 row">
+                    <label for="inputDateRecrutement" class="col-sm-2 col-form-label">Date Recrutement</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter date de recrutement" required="required" type="date" name="daterecrutement" class="form-control" id="inputDateRecrutement">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter address" required="required" type="text" name="address" class="form-control" id="inputAddress">
+                <div class="mb-3 row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter address" required="required" type="text" name="address" class="form-control" id="inputAddress">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter email" required="required" type="text" name="email" class="form-control" id="inputEmail">
+                <div class="mb-3 row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter email" required="required" type="text" name="email" class="form-control" id="inputEmail">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputTel" class="col-sm-2 col-form-label">Tel</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter telephone number" required="required" type="text" name="tel" class="form-control" id="inputTel">
+                <div class="mb-3 row">
+                    <label for="inputTel" class="col-sm-2 col-form-label">Tel</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter telephone number" required="required" type="text" name="tel" class="form-control" id="inputTel">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputCodeDepartement" class="col-sm-2 col-form-label">Code Departement</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter code departement" required="required" type="text" name="codedepartement" class="form-control" id="inputCodeDepartement">
+                <div class="mb-3 row">
+                    <label for="inputCodeDepartement" class="col-sm-2 col-form-label">Code Departement</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter code departement" required="required" type="text" name="codedepartement" class="form-control" id="inputCodeDepartement">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputCodeGrade" class="col-sm-2 col-form-label">Code Grade</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade">
+                <div class="mb-3 row">
+                    <label for="inputCodeGrade" class="col-sm-2 col-form-label">Code Grade</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade">
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex gap-2 ">
-            <button type="submit" class="btn btn-primary">Add Enseignant</button>
-            <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
-            </div>
-        </form>
-    </div><?php
-    }else if($do == 'Insert'){
+                <div class="d-flex gap-2 ">
+                <button type="submit" class="btn btn-primary">Add Enseignant</button>
+                <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
+                </div>
+            </form>
+        </div><?php
+    } else if($do == 'Insert'){
 
 
         echo '<div class="container">';
@@ -224,166 +222,165 @@
         echo "</div>";
     
         
-    }else if($do == 'Edit'){ 
+    } else if($do == 'Edit'){ 
         $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
-        $enseignantData = $enseignantDB->getEnseignantById('CodeEnseignant', $enseignantId);
-        ?>
-    <h1 class="text-center mb-5 mt-4">Edit Enseignant</h1>
-    <div class="container">
-        <form class="edit-form" action='?do=Update&enseignantId=<?= $enseignantId ?>' method="POST" enctype='multipart/form-data'>
-            
-            <div class="mb-3 row">
-                <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter nom" required="required" type="text" name="nom" class="form-control" id="inputNom" value="<?= $enseignantData['Nom'] ?? '' ?>">
+        $enseignantData = $enseignantDB->getEnseignantById('CodeEnseignant', $enseignantId);?>
+        <h1 class="text-center mb-5 mt-4">Edit Enseignant</h1>
+        <div class="container">
+            <form class="edit-form" action='?do=Update&enseignantId=<?= $enseignantId ?>' method="POST" enctype='multipart/form-data'>
+                
+                <div class="mb-3 row">
+                    <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter nom" required="required" type="text" name="nom" class="form-control" id="inputNom" value="<?= $enseignantData['Nom'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPrenom" class="col-sm-2 col-form-label">Prenom</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter prenom" required='required' type="text" name='prenom' class="form-control" id="inputPrenom" value="<?= $enseignantData['Prenom'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputPrenom" class="col-sm-2 col-form-label">Prenom</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter prenom" required='required' type="text" name='prenom' class="form-control" id="inputPrenom" value="<?= $enseignantData['Prenom'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputDateRecrutement" class="col-sm-2 col-form-label">Date Recrutement</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter date de recrutement" required="required" type="date" name="daterecrutement" class="form-control" id="inputDateRecrutement" value="<?= $enseignantData['DateRecrutement'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputDateRecrutement" class="col-sm-2 col-form-label">Date Recrutement</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter date de recrutement" required="required" type="date" name="daterecrutement" class="form-control" id="inputDateRecrutement" value="<?= $enseignantData['DateRecrutement'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter address" required="required" type="text" name="address" class="form-control" id="inputAddress" value="<?= $enseignantData['Address'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter address" required="required" type="text" name="address" class="form-control" id="inputAddress" value="<?= $enseignantData['Address'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter email" required="required" type="text" name="email" class="form-control" id="inputEmail" value="<?= $enseignantData['Mail'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter email" required="required" type="text" name="email" class="form-control" id="inputEmail" value="<?= $enseignantData['Mail'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputTel" class="col-sm-2 col-form-label">Tel</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter telephone number" required="required" type="text" name="tel" class="form-control" id="inputTel" value="<?= $enseignantData['Tel'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputTel" class="col-sm-2 col-form-label">Tel</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter telephone number" required="required" type="text" name="tel" class="form-control" id="inputTel" value="<?= $enseignantData['Tel'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputCodeDepartement" class="col-sm-2 col-form-label">Code Departement</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter code departement" required="required" type="text" name="codedepartement" class="form-control" id="inputCodeDepartement" value="<?= $enseignantData['CodeDepartement'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputCodeDepartement" class="col-sm-2 col-form-label">Code Departement</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter code departement" required="required" type="text" name="codedepartement" class="form-control" id="inputCodeDepartement" value="<?= $enseignantData['CodeDepartement'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputCodeGrade" class="col-sm-2 col-form-label">Code Grade</label>
-                <div class="col-sm-10 col-md-4">
-                    <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade" value="<?= $enseignantData['CodeGrade'] ?? '' ?>">
+                <div class="mb-3 row">
+                    <label for="inputCodeGrade" class="col-sm-2 col-form-label">Code Grade</label>
+                    <div class="col-sm-10 col-md-4">
+                        <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade" value="<?= $enseignantData['CodeGrade'] ?? '' ?>">
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Update Enseignant</button>
-        </form>
-    </div>
+                <button type="submit" class="btn btn-primary">Update Enseignant</button>
+            </form>
+        </div>
      <?php   
-    }else if($do == 'Update'){
+    } else if($do == 'Update'){
 
-    echo '<div class="container">';
+        echo '<div class="container">';
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
-        echo '<h1 class="text-center mb-5 mt-4">Update Enseignant</h1>';
-
-    
-        $nom = $_POST['nom'];
-        $prenom = $_POST['prenom'];
-        $dateRecrutement = $_POST['daterecrutement'];
-        $address = $_POST['address'];
-        $email = $_POST['email'];
-        $tel = $_POST['tel'];
-        $codeDepartement = $_POST['codedepartement'];
-        $codeGrade = $_POST['codegrade'];
-        
-
-        $formErrors = array();
-
-        // Validate Nom
-        if (empty($nom)) {
-            $formErrors[] = 'Nom cannot be empty';
-        }
-
-        // Validate Prenom
-        if (empty($prenom)) {
-            $formErrors[] = 'Prenom cannot be empty';
-        }
-
-        // Validate DateRecrutement
-        if (empty($dateRecrutement)) {
-            $formErrors[] = 'Date Recrutement cannot be empty';
-        }
-
-        // Validate Address
-        if (empty($address)) {
-            $formErrors[] = 'Address cannot be empty';
-        }
-
-        // Validate Email
-        if (empty($email)) {
-            $formErrors[] = 'Email cannot be empty';
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $formErrors[] = 'Invalid email format';
-        }
-
-        // Validate Tel
-        if (empty($tel)) {
-            $formErrors[] = 'Tel cannot be empty';
-        }
-
-        // Validate CodeDepartement
-        if (empty($codeDepartement)) {
-            $formErrors[] = 'Code Departement cannot be empty';
-        }
-
-        // Validate CodeGrade
-        if (empty($codeGrade)) {
-            $formErrors[] = 'Code Grade cannot be empty';
-        }
-
-        // Display form errors
-        foreach ($formErrors as $error) {
-            echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
-        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
+            echo '<h1 class="text-center mb-5 mt-4">Update Enseignant</h1>';
 
         
-        if (empty($formErrors)) {
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $dateRecrutement = $_POST['daterecrutement'];
+            $address = $_POST['address'];
+            $email = $_POST['email'];
+            $tel = $_POST['tel'];
+            $codeDepartement = $_POST['codedepartement'];
+            $codeGrade = $_POST['codegrade'];
             
 
-            $updateResult = $enseignantDB->editRecordById('enseignant', 'CodeEnseignant', $enseignantId, [
-                'Nom' => $nom,
-                'Prenom' => $prenom,
-                'DateRecrutement' => $dateRecrutement,
-                'Address' => $address,
-                'Mail' => $email,
-                'Tel' => $tel,
-                'CodeDepartement' => $codeDepartement,
-                'CodeGrade' => $codeGrade,
-            ]);
+            $formErrors = array();
 
-            // Check update result
-            if ($updateResult > 0) {
-                echo '<div class="alert mb-3 alert-success">Record updated successfully!</div>';
-                redirectHome("You will be redirect to ","Enseignant.php",3);
-            } else {
-                echo '<div class="alert alert-danger">Error updating record.</div>';
-                redirectHome("You will be redirect to ","Enseignant.php",3);
+            // Validate Nom
+            if (empty($nom)) {
+                $formErrors[] = 'Nom cannot be empty';
             }
-        }
-        } else {
-            $theMsg = '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
-            redirectHome("You can't access to this page ","Enseignant.php",3);
-        }
 
-echo "</div>";
+            // Validate Prenom
+            if (empty($prenom)) {
+                $formErrors[] = 'Prenom cannot be empty';
+            }
 
-    }else if($do == "Delete"){
+            // Validate DateRecrutement
+            if (empty($dateRecrutement)) {
+                $formErrors[] = 'Date Recrutement cannot be empty';
+            }
+
+            // Validate Address
+            if (empty($address)) {
+                $formErrors[] = 'Address cannot be empty';
+            }
+
+            // Validate Email
+            if (empty($email)) {
+                $formErrors[] = 'Email cannot be empty';
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $formErrors[] = 'Invalid email format';
+            }
+
+            // Validate Tel
+            if (empty($tel)) {
+                $formErrors[] = 'Tel cannot be empty';
+            }
+
+            // Validate CodeDepartement
+            if (empty($codeDepartement)) {
+                $formErrors[] = 'Code Departement cannot be empty';
+            }
+
+            // Validate CodeGrade
+            if (empty($codeGrade)) {
+                $formErrors[] = 'Code Grade cannot be empty';
+            }
+
+            // Display form errors
+            foreach ($formErrors as $error) {
+                echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
+            }
+
+            
+            if (empty($formErrors)) {
+                
+
+                $updateResult = $enseignantDB->editRecordById('enseignant', 'CodeEnseignant', $enseignantId, [
+                    'Nom' => $nom,
+                    'Prenom' => $prenom,
+                    'DateRecrutement' => $dateRecrutement,
+                    'Address' => $address,
+                    'Mail' => $email,
+                    'Tel' => $tel,
+                    'CodeDepartement' => $codeDepartement,
+                    'CodeGrade' => $codeGrade,
+                ]);
+
+                // Check update result
+                if ($updateResult > 0) {
+                    echo '<div class="alert mb-3 alert-success">Record updated successfully!</div>';
+                    redirectHome("You will be redirect to ","Enseignant.php",3);
+                } else {
+                    echo '<div class="alert alert-danger">Error updating record.</div>';
+                    redirectHome("You will be redirect to ","Enseignant.php",3);
+                }
+            }
+            } else {
+                $theMsg = '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
+                redirectHome("You can't access to this page ","Enseignant.php",3);
+            }
+
+        echo "</div>";
+
+    } else if($do == "Delete"){
         $pageTitle = 'Delete Enseignant';
         $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
         $enseignantData = $enseignantDB->getEnseignantById('CodeEnseignant', $enseignantId);
