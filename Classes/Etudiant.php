@@ -1,8 +1,13 @@
 <?php
 
+<<<<<<< HEAD
 class C_etudiant extends Database {
 
     // add a new etudiant
+=======
+class Etudiant extends Database {
+    
+>>>>>>> c93565fa885f5550892042ecb8bc48516c448a22
     public function addEtudiant($nom, $prenom, $dateNaissance, $codeClass, $numInscription, $address, $mail, $tel) {
         $data = [
             'Nom' => $nom,
