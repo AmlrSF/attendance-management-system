@@ -9,6 +9,9 @@
     // Include the Etudiant class
     require_once 'Classes/Enseignant.php';
 
+    // Include the Matiere class
+    require_once 'classes/Matiere.php';
+
     $tpl    = 'includes/template/'; 
     $css    = 'layout/css/';
     $js     = 'layout/js/';
