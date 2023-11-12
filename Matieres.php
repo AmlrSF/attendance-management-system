@@ -33,10 +33,10 @@ include 'init.php';
                                 <td class="text-center"><?= $matiere['NbreHeureTDParSemaine'] ?></td>
                                 <td class="text-center"><?= $matiere['NbreHeureTPParSemaine'] ?></td>
                                 <td class="text-center d-flex gap-2">
-                                    <a href="Matiere.php?do=Edit&matiereId=<?= $matiere['CodeMatiere'] ?>" class="btn btn-success d-flex btn-sm align-items-center gap-2">
+                                    <a href="Matieres.php?do=Edit&matiereId=<?= $matiere['CodeMatiere'] ?>" class="btn btn-success d-flex btn-sm align-items-center gap-2">
                                         Edit<i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="Matiere.php?do=Delete&matiereId=<?= $matiere['CodeMatiere'] ?>" class="btn btn-danger d-flex btn-sm align-items-center gap-2">
+                                    <a href="Matieres.php?do=Delete&matiereId=<?= $matiere['CodeMatiere'] ?>" class="btn btn-danger d-flex btn-sm align-items-center gap-2">
                                         Delete<i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
@@ -45,7 +45,7 @@ include 'init.php';
                     </tbody>
                 </table>
             </div>
-            <a href="Matiere.php?do=Add" class="btn btn-primary">
+            <a href="Matieres.php?do=Add" class="btn btn-primary">
                 <i class="fa fa-plus"></i> Add a Matiere
             </a>
         </div>
@@ -83,7 +83,7 @@ include 'init.php';
                 </div>
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">Add Matiere</button>
-                    <a href="Matiere.php" class="btn btn-primary">Matiere List</a>
+                    <a href="Matieres.php" class="btn btn-primary">Matiere List</a>
                 </div>
             </form>
         </div>
