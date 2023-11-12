@@ -1,5 +1,5 @@
 <?php
-include 'init.php';
+    include 'init.php';
 
     $pageTitle = 'Matieres';
     $do = isset($_GET['do']) ? $_GET['do'] : "Manage";
@@ -293,3 +293,4 @@ include 'init.php';
 
         echo '</div>';
     }
+?>   

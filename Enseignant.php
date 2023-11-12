@@ -1,4 +1,4 @@
-<?php 
+<?php
     include 'init.php';
 
     $pageTitle = 'Enseignants';
@@ -6,27 +6,28 @@
 
     $enseignantDB = new C_enseignant();
 
-    if($do == 'Manage'){ 
+    if($do == 'Manage'){
         $enseignants = $enseignantDB->getAllEnseignants();
-    
+
         ?>
 
         <h1 class="text-center mb-5 mt-4">Manage Enseignants</h1>
         <div class="container">
             <div class="table-responsive-sm">
                 <table class="dark-table table table-hover">
-                    <
                     <thead>
                         <tr class="bg-dark">
                             <th class="text-center py-3 bg-primary text-white" scope="col">#ID</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Last name</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">First name</th>
-                            <th class="text-center py-3 bg-primary text-white" scope="col">Date Recrutement</th>
+
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Code Grade</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Code Departement</th>
+
                             <th class="text-center py-3 bg-primary text-white" scope="col">Address</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Mail</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Tel</th>
-                            <th class="text-center py-3 bg-primary text-white" scope="col">Code Departement</th>
-                            <th class="text-center py-3 bg-primary text-white" scope="col">Code Grade</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Date Recrutement</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Control</th>
                         </tr>
                     </thead>
@@ -37,12 +38,14 @@
                                 <td class="text-center">#<?= $index + 1 ?></td>
                                 <td class="text-center"><?= $enseignant['Nom'] ?></td>
                                 <td class="text-center"><?= $enseignant['Prenom'] ?></td>
-                                <td class="text-center"><?= $enseignant['DateRecrutement'] ?></td>
+
+                                <td class="text-center"><?= $enseignant['NomGrade'] ?></td>
+                                <td class="text-center"><?= $enseignant['NomDepartement'] ?></td>
+
                                 <td class="text-center"><?= $enseignant['Address'] ?></td>
                                 <td class="text-center"><?= $enseignant['Mail'] ?></td>
                                 <td class="text-center"><?= $enseignant['Tel'] ?></td>
-                                <td class="text-center"><?= $enseignant['CodeDepartement'] ?></td>
-                                <td class="text-center"><?= $enseignant['CodeGrade'] ?></td>
+                                <td class="text-center"><?= $enseignant['DateRecrutement'] ?></td>
                                 <td class="text-center d-flex gap-2 ">
                                     <a href="Enseignant.php?do=Edit&enseignantId=<?= $enseignant['CodeEnseignant'] ?>" class="btn btn-success d-flex btn-sm align-items-center gap-2">
                                         Edit<i class="fa-solid fa-pen-to-square"></i>
@@ -59,13 +62,13 @@
             <a href="Enseignant.php?do=Add" class="btn btn-primary">
                 <i class="fa fa-plus"></i> Add an Enseignant
             </a>
-        </div><?php 
+        </div><?php
 
-    
+
     } else if($do == "Add"){
         $pageTitle = 'Add new enseignant';
         ?>
-        
+
         <h1 class="text-center mb-5 mt-4">Add New Enseignant</h1>
         <div class="container">
             <form class="edit-form" action='?do=Insert' method="POST" enctype='multipart/form-data'>
@@ -105,21 +108,46 @@
                         <input placeholder="Enter telephone number" required="required" type="text" name="tel" class="form-control" id="inputTel">
                     </div>
                 </div>
+                <!-- ********** -->
                 <div class="mb-3 row">
                     <label for="inputCodeDepartement" class="col-sm-2 col-form-label">Code Departement</label>
                     <div class="col-sm-10 col-md-4">
-                        <input placeholder="Enter code departement" required="required" type="text" name="codedepartement" class="form-control" id="inputCodeDepartement">
+                        <select required="required" name="codedepartement" class="form-control" id="inputCodeDepartement">
+                            <!-- Placeholder option -->
+                            <option value="" disabled selected>Select a departement</option>
+
+                            <?php
+                            $departmentOptions = $enseignantDB->getAllRecords("SELECT * FROM departement");
+                            echo $departmentOptions;
+                            foreach ($departmentOptions as $departement) {
+                                echo '<option value="' . $departement['codeDepartement'] . '">' . $departement['nomDepartement'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
+
                 <div class="mb-3 row">
                     <label for="inputCodeGrade" class="col-sm-2 col-form-label">Code Grade</label>
                     <div class="col-sm-10 col-md-4">
-                        <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade">
+                        <select required="required" name="codegrade" class="form-control" id="inputCodeGrade">
+                            <!-- Placeholder option -->
+                            <option value="" disabled selected>Select a grade</option>
+
+                            <?php
+                            $gradeOptions = $enseignantDB->getAllRecords("SELECT * FROM grade");
+
+                            foreach ($gradeOptions as $grade) {
+                                echo '<option value="' . $grade['CodeGrade'] . '">' . $grade['NomGrade'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
+                <!-- ****************** -->
                 <div class="d-flex gap-2 ">
-                <button type="submit" class="btn btn-primary">Add Enseignant</button>
-                <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
+                    <button type="submit" class="btn btn-primary">Add Enseignant</button>
+                    <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
                 </div>
             </form>
         </div><?php
@@ -130,7 +158,7 @@
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo '<h1 class="text-center mb-5 mt-4">Insert Enseignant</h1>';
-    
+
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $dateRecrutement = $_POST['daterecrutement'];
@@ -139,57 +167,57 @@
             $tel = $_POST['tel'];
             $codeDepartement = $_POST['codedepartement'];
             $codeGrade = $_POST['codegrade'];
-    
+
             $formErrors = array();
-    
+
             // Validate Nom
             if (empty($nom) || strlen($nom) < 4) {
                 $formErrors[] = "Nom can't be empty and should be at least 4 characters.";
             }
-    
+
             // Validate Prenom
             if (empty($prenom) || strlen($prenom) < 4) {
                 $formErrors[] = "Prenom can't be empty and should be at least 4 characters.";
             }
-    
+
             // Validate Date Recrutement
             // Add more specific validation if needed
-    
+
             // Validate Address
             if (empty($address)) {
                 $formErrors[] = "Address can't be empty.";
             }
-    
+
             // Validate Email
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $formErrors[] = "Email is not valid.";
             }
-    
+
             // Validate Tel
             if (empty($tel)) {
                 $formErrors[] = "Tel can't be empty.";
             }
-    
+
             // Validate Code Departement
             if (empty($codeDepartement)) {
                 $formErrors[] = "Code Departement can't be empty.";
             }
-    
+
             // Validate Code Grade
             if (empty($codeGrade)) {
                 $formErrors[] = "Code Grade can't be empty.";
             }
-    
+
             // Display form errors
             foreach ($formErrors as $error) {
                 echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
             }
-    
+
             // Check if there are no errors
             if (empty($formErrors)) {
                 // Check if the enseignant with the same Prenom already exists
                 $check = $enseignantDB->checkItem("Prenom", "enseignant", $prenom);
-    
+
                 if ($check == 1) {
                     echo "<div class='alert alert-success'>Enseignant with the same Prenom already exists in the database.</div>";
                     redirectHome("you will be directed To ", 'back', 3);
@@ -205,7 +233,7 @@
                         $codeDepartement,
                         $codeGrade
                     );
-    
+
                     if ($insertResult > 0) {
                         echo '<div class="alert mb-3 alert-success">Enseignant added successfully!</div>';
                         redirectHome("you will be directed To ", 'back', 3);
@@ -220,15 +248,15 @@
             redirectHome($theMsg);
         }
         echo "</div>";
-    
-        
-    } else if($do == 'Edit'){ 
+
+
+    } else if($do == 'Edit'){
         $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
         $enseignantData = $enseignantDB->getEnseignantById('CodeEnseignant', $enseignantId);?>
         <h1 class="text-center mb-5 mt-4">Edit Enseignant</h1>
         <div class="container">
             <form class="edit-form" action='?do=Update&enseignantId=<?= $enseignantId ?>' method="POST" enctype='multipart/form-data'>
-                
+
                 <div class="mb-3 row">
                     <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
                     <div class="col-sm-10 col-md-4">
@@ -265,22 +293,49 @@
                         <input placeholder="Enter telephone number" required="required" type="text" name="tel" class="form-control" id="inputTel" value="<?= $enseignantData['Tel'] ?? '' ?>">
                     </div>
                 </div>
+                <!-- ******** -->
+
                 <div class="mb-3 row">
                     <label for="inputCodeDepartement" class="col-sm-2 col-form-label">Code Departement</label>
                     <div class="col-sm-10 col-md-4">
-                        <input placeholder="Enter code departement" required="required" type="text" name="codedepartement" class="form-control" id="inputCodeDepartement" value="<?= $enseignantData['CodeDepartement'] ?? '' ?>">
+                        <select required="required" name="codedepartement" class="form-control" id="inputCodeDepartement">
+                            <!-- Placeholder option -->
+                            <option value="" disabled>Select a departement</option>
+
+                            <?php
+                            $departmentOptions = $enseignantDB->getAllRecords("SELECT * FROM departement");
+
+                            foreach ($departmentOptions as $departement) {
+                                $selected = ($departement['codeDepartement'] == $enseignantData['codeDepartement']) ? 'selected' : '';
+                                echo '<option value="' . $departement['codeDepartement'] . '" ' . $selected . '>' . $departement['nomDepartement'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="inputCodeGrade" class="col-sm-2 col-form-label">Code Grade</label>
                     <div class="col-sm-10 col-md-4">
-                        <input placeholder="Enter code grade" required="required" type="text" name="codegrade" class="form-control" id="inputCodeGrade" value="<?= $enseignantData['CodeGrade'] ?? '' ?>">
+                        <select required="required" name="codegrade" class="form-control" id="inputCodeGrade">
+                            <!-- Placeholder option -->
+                            <option value="" disabled>Select a grade</option>
+
+                            <?php
+                            $gradeOptions = $enseignantDB->getAllRecords("SELECT * FROM grade");
+
+                            foreach ($gradeOptions as $grade) {
+                                $selected = ($grade['CodeGrade'] == $enseignantData['CodeGrade']) ? 'selected' : '';
+                                echo '<option value="' . $grade['CodeGrade'] . '" ' . $selected . '>' . $grade['NomGrade'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
+                <!-- ******** -->
                 <button type="submit" class="btn btn-primary">Update Enseignant</button>
             </form>
         </div>
-     <?php   
+     <?php
     } else if($do == 'Update'){
 
         echo '<div class="container">';
@@ -289,7 +344,7 @@
             $enseignantId = isset($_GET['enseignantId']) ? $_GET['enseignantId'] : null;
             echo '<h1 class="text-center mb-5 mt-4">Update Enseignant</h1>';
 
-        
+
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $dateRecrutement = $_POST['daterecrutement'];
@@ -298,7 +353,7 @@
             $tel = $_POST['tel'];
             $codeDepartement = $_POST['codedepartement'];
             $codeGrade = $_POST['codegrade'];
-            
+
 
             $formErrors = array();
 
@@ -349,9 +404,9 @@
                 echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
             }
 
-            
+
             if (empty($formErrors)) {
-                
+
 
                 $updateResult = $enseignantDB->editRecordById('enseignant', 'CodeEnseignant', $enseignantId, [
                     'Nom' => $nom,
@@ -387,17 +442,17 @@
         echo '<div class="container">';
         echo '<h1 class="text-center mb-5 mt-4">Delete Enseignant</h1>';
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                
+
                 $confirmDelete = isset($_POST['confirm-delete']) ? $_POST['confirm-delete'] : '';
-        
+
                 if ($confirmDelete === 'Yes') {
-                    
+
                     $deleteResult = $enseignantDB->deleteRecordById('enseignant', 'CodeEnseignant', $enseignantId);
-        
+
                     if ($deleteResult > 0) {
                         echo '<div class="alert mb-3 alert-success">Record deleted successfully!</div>';
                         redirectHome("you will be redirect to ", 'Enseignant.php', 3);
-                        
+
                     } else {
                         echo '<div class="alert alert-danger">Error deleting record.</div>';
                         redirectHome("you will be redirect to ", 'Enseignant.php', 3);
@@ -421,7 +476,7 @@
                 </div>
                 <?php
             }
-        echo '</div>';    
+        echo '</div>';
     }
 
 ?>
