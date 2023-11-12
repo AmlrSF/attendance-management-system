@@ -14,7 +14,7 @@
     //? redirect to home or other page
     function redirectHome($theMsg ,$url = null,$seconds = 3){
         
-
+        
         if($url === null){
             $url = 'index.php';
             $link = 'Homepage';
@@ -29,7 +29,7 @@
             
         }
 
-        echo $theMsg;
+       
 
         echo '<div class="alert  alert-info mt-3">'.$theMsg.'<strong>'.$link.'</strong> '.$seconds.' seconds</div>';
         
