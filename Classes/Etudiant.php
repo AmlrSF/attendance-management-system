@@ -18,9 +18,15 @@ class C_etudiant extends Database {
         return $this->insertRecord('etudiant', $data);
     }
 
-    //get all etudiant
-    public function getAllStudents() {
-        $query = "SELECT * FROM etudiant";
+   //get all etudiant
+   public function getAllStudents() {
+        $query = "
+            SELECT e.*, c.NomClass, g.NomGroupe, d.NomDepartement
+            FROM etudiant e
+            LEFT JOIN class c ON e.CodeClass = c.CodeClass
+            LEFT JOIN groupe g ON c.CodeGroupe = g.CodeGroupe
+            LEFT JOIN departement d ON c.CodeDepartement = d.CodeDepartement
+        ";
         return $this->getAllRecords($query);
     }
 
@@ -42,3 +48,5 @@ class C_etudiant extends Database {
     }
 }
 ?>
+
+

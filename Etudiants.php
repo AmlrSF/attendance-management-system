@@ -20,7 +20,11 @@
                             <th class="text-center py-3 bg-primary text-white" scope="col">Last name</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">First name</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Birth date</th>
+
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Departement</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Class</th>
+                            <th class="text-center py-3 bg-primary text-white" scope="col">Groupe</th>
+
                             <th class="text-center py-3 bg-primary text-white" scope="col">Address</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Mail</th>
                             <th class="text-center py-3 bg-primary text-white" scope="col">Tel</th>
@@ -35,7 +39,11 @@
                                 <td class="text-center " ><?= $student['Nom'] ?></td>
                                 <td class="text-center " ><?= $student['Prenom'] ?></td>
                                 <td class="text-center " ><?= $student['DateNaissance'] ?></td>
-                                <td class="text-center " ><?= $student['CodeClass'] ?></td>
+
+                                <td class="text-center " ><?= $student['NomDepartement'] ?></td>
+                                <td class="text-center " ><?= $student['NomClass'] ?></td>
+                                <td class="text-center " ><?= $student['NomGroupe'] ?></td>
+
                                 <td class="text-center " ><?= $student['Address'] ?></td>
                                 <td class="text-center " ><?= $student['Mail'] ?></td>
                                 <td class="text-center " ><?= $student['Tel'] ?></td>
@@ -83,12 +91,27 @@
                         <input placeholder="Enter date de naissance" required="required" type="date" name="datenaissance" class="form-control" id="inputDateNaissance">
                     </div>
                 </div>
+                <!-- ******************* -->
                 <div class="mb-3 row">
                     <label for="inputClass" class="col-sm-2 col-form-label">Class Name</label>
-                    <div class="col-sm-10 col-md-4">
-                        <input placeholder="Enter class" required="required" type="text" name="class" class="form-control" id="inputClass">
-                    </div>
+                        <div class="col-sm-10 col-md-4">
+                                <select required="required" name="class" class="form-control" id="inputClass">
+                                <!-- Placeholder option -->
+                                <option value="" disabled selected>Select a class</option>
+
+                                <?php
+                                // Fetch class options from the database
+                                $classOptions = $etudiantDB->getAllRecords("SELECT * FROM class");
+
+                                // Loop through the options and generate <option> elements
+                                foreach ($classOptions as $class) {
+                                    echo '<option value="' . $class['CodeClass'] . '">' . $class['NomClass'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
                 </div>
+                <!-- ******************** -->
                 <div class="mb-3 row">
                     <label for="inputInscription" class="col-sm-2 col-form-label">Inscription ID</label>
                     <div class="col-sm-10 col-md-4">
@@ -262,12 +285,28 @@
                         <input placeholder="Enter date de naissance" required="required" type="date" name="datenaissance" class="form-control" id="inputDateNaissance" value="<?= $etudiantData['DateNaissance'] ?? '' ?>">
                     </div>
                 </div>
+                <!-- ************* -->
                 <div class="mb-3 row">
-                    <label for="inputClass" class="col-sm-2 col-form-label">Class Name</label>
+                    <label for="selectClass" class="col-sm-2 col-form-label">Select Class</label>
                     <div class="col-sm-10 col-md-4">
-                        <input placeholder="Enter class" required="required" type="text" name="class" class="form-control" id="inputClass" value="<?= $etudiantData['CodeClass'] ?? '' ?>">
+                        <select required="required" name="class" class="form-control" id="selectClass">
+                            <!-- Placeholder option -->
+                            <option value="" disabled>Select a class</option>
+
+                            <?php
+                            
+                            $classOptions = $etudiantDB->getAllRecords("SELECT * FROM class");
+
+                            
+                            foreach ($classOptions as $class) {
+                                $selected = ($etudiantData['CodeClass'] ?? '') == $class['CodeClass'] ? 'selected' : '';
+                                echo '<option value="' . $class['CodeClass'] . '" ' . $selected . '>' . $class['NomClass'] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                 </div>
+                <!-- ************** -->
                 <div class="mb-3 row">
                     <label for="inputInscription" class="col-sm-2 col-form-label">Inscription ID</label>
                     <div class="col-sm-10 col-md-4">
