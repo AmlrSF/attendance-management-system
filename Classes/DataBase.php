@@ -59,7 +59,6 @@
                 return 0;
             }
         }
-<<<<<<< HEAD
 
 
         public function getRecordById($table, $idColumn, $idValue) {
@@ -131,6 +130,4 @@
         }
         
     }
-=======
-    }
->>>>>>> c93565fa885f5550892042ecb8bc48516c448a22
+
