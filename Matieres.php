@@ -32,7 +32,7 @@ include 'init.php';
                                 <td class="text-center"><?= $matiere['NbreHeureCoursParSemaine'] ?></td>
                                 <td class="text-center"><?= $matiere['NbreHeureTDParSemaine'] ?></td>
                                 <td class="text-center"><?= $matiere['NbreHeureTPParSemaine'] ?></td>
-                                <td class="text-center d-flex gap-2">
+                                <td class="text-center d-flex justify-content-center gap-2">
                                     <a href="Matieres.php?do=Edit&matiereId=<?= $matiere['CodeMatiere'] ?>" class="btn btn-success d-flex btn-sm align-items-center gap-2">
                                         Edit<i class="fa-solid fa-pen-to-square"></i>
                                     </a>
@@ -238,15 +238,15 @@ include 'init.php';
                 // Check update result
                 if ($updateResult > 0) {
                     echo '<div class="alert mb-3 alert-success">Record updated successfully!</div>';
-                    redirectHome("You will be redirected to ", 'Matiere.php', 3);
+                    redirectHome("You will be redirected to ", 'Matieres.php', 3);
                 } else {
                     echo '<div class="alert alert-danger">Error updating record.</div>';
-                    redirectHome("You will be redirected to ", 'Matiere.php', 3);
+                    redirectHome("You will be redirected to ", 'Matieres.php', 3);
                 }
             }
         } else {
             echo '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
-            redirectHome("You will be redirected to","back",3);
+            redirectHome("You will be redirected to","Matieres.php",3);
         }
 
         echo "</div>";
@@ -258,44 +258,37 @@ include 'init.php';
 
         $matiereId = isset($_GET['matiereId']) ? $_GET['matiereId'] : null;
 
-        $check = $matiereDB->checkItem("CodeMatiere", "matiere", $matiereId);
-
-        if ($check == 1) {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
-                $confirmDelete = isset($_POST['confirm-delete']) ? $_POST['confirm-delete'] : '';
+            $confirmDelete = isset($_POST['confirm-delete']) ? $_POST['confirm-delete'] : '';
 
-                if ($confirmDelete === 'Yes') {
-                    
-                    $result = $matiereDB->deleteRecordById('matiere', 'CodeMatiere', $matiereId);
+            if ($confirmDelete === 'Yes') {
+                
+                $result = $matiereDB->deleteRecordById('matiere', 'CodeMatiere', $matiereId);
 
-                    if ($result > 0) {
-                        echo "<div class='alert alert-success'>Matiere successfully deleted from the database</div>";
-                        redirectHome("You will be redirected to ", 'back', 4);
-                    } else {
-                        echo "<div class='alert alert-danger'>Error deleting Matiere from the database</div>";
-                        redirectHome("You will be redirected to ", 'back', 4);
-                    }
+                if ($result > 0) {
+                    echo "<div class='alert alert-success'>Matiere successfully deleted from the database</div>";
+                    redirectHome("You will be redirected to ", 'Matieres.php', 3);
                 } else {
-                    $theMsg = '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';
-                    redirectHome($theMsg);
+                    echo "<div class='alert alert-danger'>Error deleting Matiere from the database</div>";
+                    redirectHome("You will be redirected to ", 'Matieres.php', 3);
                 }
             } else {
-                ?>
-                <form class="delete-form" action="?do=Delete&matiereId=<?= $matiereId ?>" method="POST">
-                    <p class="lead">Are you sure you want to delete this Matiere?</p>
-                    <div class="mb-3 row">
-                        <div class="col-sm-10 col-md-4">
-                            <button type="submit" class="btn btn-danger" name="confirm-delete" value="Yes">Yes</button>
-                            <a href="?do=ManageMatieres" class="btn btn-secondary">No</a>
-                        </div>
-                    </div>
-                </form>
-                <?php
+                echo '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';
+                redirectHome("You will be redirected to ", 'Matieres.php', 3);
             }
         } else {
-            echo '<div class="alert mt-5 alert-danger">There is no such Matiere with ID: ' . $matiereId . '</div>';
-            redirectHome("You will be redirected to ", 'back', 4);
+            ?>
+            <form class="delete-form" action="?do=Delete&matiereId=<?= $matiereId ?>" method="POST">
+                <p class="lead">Are you sure you want to delete this Matiere?</p>
+                <div class="mb-3 row">
+                    <div class="col-sm-10 col-md-4">
+                        <button type="submit" class="btn btn-danger" name="confirm-delete" value="Yes">Yes</button>
+                        <a href="?do=ManageMatieres" class="btn btn-secondary">No</a>
+                    </div>
+                </div>
+            </form>
+            <?php
         }
 
         echo '</div>';

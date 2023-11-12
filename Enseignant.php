@@ -396,11 +396,11 @@
         
                     if ($deleteResult > 0) {
                         echo '<div class="alert mb-3 alert-success">Record deleted successfully!</div>';
-                        redirectHome("you will be redirect to ", 'back', 3);
+                        redirectHome("you will be redirect to ", 'Enseignant.php', 3);
                         
                     } else {
                         echo '<div class="alert alert-danger">Error deleting record.</div>';
-                        redirectHome("you will be redirect to ", 'back', 3);
+                        redirectHome("you will be redirect to ", 'Enseignant.php', 3);
                     }
                 } else {
                     $theMsg = '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';

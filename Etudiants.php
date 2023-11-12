@@ -54,7 +54,7 @@
                 </table>
             </div>
             <a href="Etudiants.php?do=Add" class="btn btn-primary">
-            <i class="fa fa-plus"></i> Edit an etudiant</a>
+            <i class="fa fa-plus"></i> Add an etudiant</a>
         </div> <?php 
 
    
@@ -125,7 +125,7 @@
         echo '<div class="container">';
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo '<h1 class="text-center mb-5 mt-4">Insert Members</h1>';
+            echo '<h1 class="text-center mb-5 mt-4">Insert Etudiant</h1>';
         
            
             $name = $_POST['name'];
@@ -180,6 +180,7 @@
             // Display form errors
             foreach ($formErrors as $error) {
                 echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
+                redirectHome("you will be directed To ",'back',3);
             }
         
             // Check if there are no errors
@@ -193,6 +194,7 @@
                 if ($check == 1) {
                     
                     echo "<div class='alert alert-success'>Username already exists in the etudiant table.</div>";
+                    redirectHome("you will be directed To ",'back',3);
 
                 } else {
                    
@@ -219,7 +221,7 @@
                 }
                             
         
-                ;
+                
             }
         } else {
             
@@ -407,10 +409,10 @@
         
                     if ($result > 0) {
                         echo "<div class='alert alert-success'>Etudiant successfully deleted from the database</div>";
-                        redirectHome("you will be redirect to ", 'back', 4);
+                        redirectHome("you will be redirect to ", 'Etudiants.php', 3);
                     } else {
                         echo "<div class='alert alert-danger'>Error deleting Etudiant from the database</div>";
-                        redirectHome("you will be redirect to ", 'back', 4);
+                        redirectHome("you will be redirect to ", 'Etudiants.php', 3);
                     }
                 } else {
                     $theMsg = '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';
