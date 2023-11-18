@@ -127,6 +127,25 @@
                 return 0;
             }
         }
+
+        public function getClassesByDepartment($departmentCode) {
+            try {
+                $stmt = $this->conn->prepare("
+                    SELECT c.*, g.NomGroupe
+                    FROM class c
+                    JOIN groupe g ON c.CodeGroupe = g.CodeGroupe
+                    WHERE c.CodeDepartement = :departmentCode
+                ");
+                $stmt->bindParam(':departmentCode', $departmentCode);
+                $stmt->execute();
+        
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return [];
+            }
+        }
+        
         
     }
 

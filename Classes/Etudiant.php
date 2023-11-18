@@ -43,6 +43,25 @@
         public function editEtudiantById($etudiantId, $data) {
             return $this->editRecordById('etudiant', $etudiantId, $data);
         }
+
+        public function getStudentsByClass($classCode) {
+            try {
+                $query = "
+                    SELECT *
+                    FROM etudiant
+                    WHERE CodeClass = :classCode
+                ";
+        
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':classCode', $classCode);
+                $stmt->execute();
+        
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return [];
+            }
+        }
     }
 ?>
 
