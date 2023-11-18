@@ -62,7 +62,60 @@
                 return [];
             }
         }
+
+    
+        public function markEtudiantAbsent($etudiantId, $matiereId, $enseignantId, $seanceId, $classId, $dateJour) {
+            try {
+                // Step 1: Create a new entry in ficheabsence
+                $query = "
+                    INSERT INTO ficheabsence (CodeEtudiant, CodeMatiere, CodeEnseignant, CodeClass, DateJour)
+                    VALUES (:etudiantId, :matiereId, :enseignantId, :classId, :dateJour)
+                ";
+                $params = [
+                    'etudiantId' => $etudiantId,
+                    'matiereId' => $matiereId,
+                    'enseignantId' => $enseignantId,
+                    'classId' => $classId,
+                    'dateJour' => $dateJour,
+                ];
+                $this->insertRecord($query, $params);
+        
+                // Step 2: Get the last inserted ficheabsence ID
+                $ficheAbsenceId = $this->conn->lastInsertId();
+        
+                // Step 3: Associate ficheabsence with seance
+                $query = "
+                    INSERT INTO ficheabsenceseance (CodeFicheAbsence, CodeSeance)
+                    VALUES (:ficheAbsenceId, :seanceId)
+                ";
+                $params = [
+                    'ficheAbsenceId' => $ficheAbsenceId,
+                    'seanceId' => $seanceId,
+                ];
+                $this->insertRecord($query, $params);
+        
+                // Step 4: Update ligneficheabsence
+                $query = "
+                    INSERT INTO ligneficheabsence (CodeFicheAbsence, CodeEtudiant)
+                    VALUES (:ficheAbsenceId, :etudiantId)
+                ";
+                $params = [
+                    'ficheAbsenceId' => $ficheAbsenceId,
+                    'etudiantId' => $etudiantId,
+                ];
+                $this->insertRecord($query, $params);
+        
+                return true;  // Marking absent successful
+            } catch (PDOException $e) {
+                // Log or handle the error
+                return false;  // Marking absent failed
+            }
+        }
+        
+        
     }
+
+
 ?>
 
 

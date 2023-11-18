@@ -92,11 +92,11 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Date of Birth</th>
-                    <th>Class Code</th>
                     <th>Registration Number</th>
                     <th>Address</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,11 +105,16 @@
                         <td><?= $student['CodeEtudiant']; ?></td>
                         <td><?= $student['Nom'] . ' ' . $student['Prenom']; ?></td>
                         <td><?= $student['DateNaissance']; ?></td>
-                        <td><?= $student['CodeClass']; ?></td>
                         <td><?= $student['NumInscription']; ?></td>
                         <td><?= $student['Address']; ?></td>
                         <td><?= $student['Mail']; ?></td>
                         <td><?= $student['Tel']; ?></td>
+                        <td>
+                            <form action="mark_absent.php?student_id=<?= $student['CodeEtudiant']; ?>" method="post">
+                                <input type="hidden" name="student_id" value="<?= $student['CodeEtudiant']; ?>">
+                                <button type="submit" class="btn btn-danger">Mark Absent</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

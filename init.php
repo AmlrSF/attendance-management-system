@@ -12,6 +12,9 @@
     // Include the Matiere class
     require_once 'classes/Matiere.php';
 
+    // Include the CStatus class
+    require_once 'classes/CStatus.php';
+
     $tpl    = 'includes/template/'; 
     $css    = 'layout/css/';
     $js     = 'layout/js/';
