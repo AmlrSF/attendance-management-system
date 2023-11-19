@@ -67,43 +67,36 @@
         public function markEtudiantAbsent($etudiantId, $matiereId, $enseignantId, $seanceId, $classId, $dateJour) {
             try {
                 // Step 1: Create a new entry in ficheabsence
-                $query = "
-                    INSERT INTO ficheabsence (CodeEtudiant, CodeMatiere, CodeEnseignant, CodeClass, DateJour)
-                    VALUES (:etudiantId, :matiereId, :enseignantId, :classId, :dateJour)
-                ";
-                $params = [
-                    'etudiantId' => $etudiantId,
+                $query = "INSERT INTO `ficheabsence` (`CodeMatiere`, `CodeEnseignant`, `CodeClass`, `DateJour`) 
+                VALUES (:matiereId, :enseignantId, :classId, :dateJour)";
+
+                $params = [    
                     'matiereId' => $matiereId,
                     'enseignantId' => $enseignantId,
                     'classId' => $classId,
                     'dateJour' => $dateJour,
                 ];
-                $this->insertRecord($query, $params);
+                $this->insertMarkedEtudiant($query, $params);
         
                 // Step 2: Get the last inserted ficheabsence ID
                 $ficheAbsenceId = $this->conn->lastInsertId();
+                
         
                 // Step 3: Associate ficheabsence with seance
-                $query = "
-                    INSERT INTO ficheabsenceseance (CodeFicheAbsence, CodeSeance)
-                    VALUES (:ficheAbsenceId, :seanceId)
-                ";
+                $query = "INSERT INTO ficheabsenceseance (`CodeFicheAbsence`, CodeSeance) VALUES (:ficheAbsenceId, :seanceId)";
                 $params = [
                     'ficheAbsenceId' => $ficheAbsenceId,
                     'seanceId' => $seanceId,
                 ];
-                $this->insertRecord($query, $params);
+                $this->insertMarkedEtudiant($query, $params);
         
                 // Step 4: Update ligneficheabsence
-                $query = "
-                    INSERT INTO ligneficheabsence (CodeFicheAbsence, CodeEtudiant)
-                    VALUES (:ficheAbsenceId, :etudiantId)
-                ";
+                $query = "INSERT INTO ligneficheabsence (CodeFicheAbsence, CodeEtudiant) VALUES (:ficheAbsenceId, :etudiantId)";
                 $params = [
                     'ficheAbsenceId' => $ficheAbsenceId,
                     'etudiantId' => $etudiantId,
                 ];
-                $this->insertRecord($query, $params);
+                $this->insertMarkedEtudiant($query, $params);
         
                 return true;  // Marking absent successful
             } catch (PDOException $e) {
@@ -112,10 +105,17 @@
             }
         }
         
+        private function insertMarkedEtudiant($query, $params) {
+            try {
+                $stmt = $this->conn->prepare($query);
+                $stmt->execute($params);
+            } catch (PDOException $e) {
+                // Log or handle the error
+                throw $e; // Rethrow the exception for better error handling in the calling code
+            }
+        }
         
+    
     }
-
-
 ?>
-
-
+    

@@ -115,10 +115,7 @@
                         <td><?= $student['Mail']; ?></td>
                         <td><?= $student['Tel']; ?></td>
                         <td>
-                            <form action="mark_absent.php?student_id=<?= $student['CodeEtudiant']; ?>" method="post">
-                                <input type="hidden" name="student_id" value="<?= $student['CodeEtudiant']; ?>">
-                                <button type="submit" class="btn btn-danger">Mark Absent</button>
-                            </form>
+                            <a type="submit" class="btn btn-danger" href='mark_absent.php?student_id=<?= $student['CodeEtudiant']; ?>"'>Mark Absent</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

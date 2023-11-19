@@ -18,11 +18,13 @@
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
         $selectedNomEtudiant = $_POST['nom_etudiant'] ?? null;
         $selectedPrenomEtudiant = $_POST['prenom_etudiant'] ?? null;
         $selectedDateDebut = $_POST['date_debut'] ?? null;
         $selectedDateFin = $_POST['date_fin'] ?? null;
         $selectedNomClasse = $_POST['nom_classe'] ?? null;
+        
 
         $absenceByMatiere = $statDB->listeAbsenceEtudiantParMatiere($selectedNomEtudiant, $selectedPrenomEtudiant, $selectedDateDebut, $selectedDateFin);
 
