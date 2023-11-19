@@ -1,5 +1,7 @@
 <?php 
 
+
+
     // Include the Database class
     require_once 'Classes/Database.php';
 
@@ -24,3 +26,5 @@
     //including the importtant files 
     include $func . 'functions.php';
     include $tpl . 'header.php';
+
+    if(!isset($noNavbar)){ include $tpl . 'navbar.php'; }

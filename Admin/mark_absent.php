@@ -1,36 +1,45 @@
 <?php 
-$pageTitle = 'Student Details';
-include 'init.php';
-
-$etudiantDB = new C_etudiant();
-$database = new Database();
-
-if (isset($_GET['student_id'])) {
-    $studentId = $_GET['student_id'];
-    $studentDetails = $etudiantDB->getRecordById('etudiant', 'CodeEtudiant', $studentId);
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if the form is submitted
-    if (isset($_POST['student_id'], $_POST['seance'])) {
-        $studentId = $_POST['student_id'];
-        $seanceId = $_POST['seance'];
-
-        // Mark the student absent
-        $result = $etudiantDB->markEtudiantAbsent($studentId, $seanceId);
-
-        if ($result) {
-            // Successful absence marking
-            echo "Student marked absent successfully.";
-        } else {
-            // Handle the case where marking absent failed
-            echo "Failed to mark student absent.";
-        }
-    } else {
-        // Handle the case where student ID or seance is not provided
-        echo "Student ID or seance not provided.";
+    ob_start();
+    session_start();
+    if(isset($_SESSION["Username"])){
+        $pageTitle = 'Student Details';
+        include 'init.php';
+        
+    }else{
+        header('Location: index.php');
+        exit();
     }
-}
+
+
+    $etudiantDB = new C_etudiant();
+    $database = new Database();
+
+    if (isset($_GET['student_id'])) {
+        $studentId = $_GET['student_id'];
+        $studentDetails = $etudiantDB->getRecordById('etudiant', 'CodeEtudiant', $studentId);
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Check if the form is submitted
+        if (isset($_POST['student_id'], $_POST['seance'])) {
+            $studentId = $_POST['student_id'];
+            $seanceId = $_POST['seance'];
+
+            // Mark the student absent
+            $result = $etudiantDB->markEtudiantAbsent($studentId, $seanceId);
+
+            if ($result) {
+                // Successful absence marking
+                echo "Student marked absent successfully.";
+            } else {
+                // Handle the case where marking absent failed
+                echo "Failed to mark student absent.";
+            }
+        } else {
+            // Handle the case where student ID or seance is not provided
+            echo "Student ID or seance not provided.";
+        }
+    }
 
 ?>
 

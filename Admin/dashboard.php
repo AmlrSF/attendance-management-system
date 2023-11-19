@@ -1,7 +1,16 @@
 <?php 
-    $pageTitle = 'HomePage';
-    include 'init.php'; 
-    
+
+    ob_start();
+    session_start();
+    if(isset($_SESSION["Username"])){
+        $pageTitle = 'HomePage';
+        include 'init.php'; 
+        
+    }else{
+        header('Location: index.php');
+        exit();
+    }
+
     $etudiantDB = new C_etudiant();
     $database = new Database();
     
@@ -124,4 +133,4 @@
     <?php endif; ?>
 </div>
 
-<?php include $tpl.'footer.php' ?>
+<?php include $tpl.'footer.php' ;?>

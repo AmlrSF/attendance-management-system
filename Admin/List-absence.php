@@ -1,7 +1,16 @@
 <?php
 
-    $pageTitle = 'Absence Statistics';
-    include 'init.php';
+    ob_start();
+    session_start();
+    if(isset($_SESSION["Username"])){
+        $pageTitle = 'Absence Statistics';
+        include 'init.php';
+        
+    }else{
+        header('Location: index.php');
+        exit();
+    }
+
 
     $statDB = new C_Stat();
 

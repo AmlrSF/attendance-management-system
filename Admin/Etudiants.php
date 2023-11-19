@@ -1,7 +1,15 @@
 <?php 
-    include 'init.php';
-
-    $pageTitle = 'Members';
+    ob_start();
+    session_start();
+    if(isset($_SESSION["Username"])){
+        include 'init.php';s
+        $pageTitle = 'Etudiant';
+        
+    }else{
+        header('Location: index.php');
+        exit();
+    }
+    
     $do = isset($_GET['do']) ? $_GET['do'] : "Manage";
 
     $etudiantDB = new C_etudiant();
