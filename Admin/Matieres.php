@@ -2,9 +2,8 @@
     ob_start();
     session_start();
     if(isset($_SESSION["Username"])){
-        include 'init.php';
-
         $pageTitle = 'Matieres';
+        include 'init.php';
         
     }else{
         header('Location: index.php');

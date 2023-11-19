@@ -2,7 +2,7 @@
     ob_start();
     session_start();
     if(isset($_SESSION["Username"])){
-        include 'init.php';s
+        include 'init.php';
         $pageTitle = 'Etudiant';
         
     }else{

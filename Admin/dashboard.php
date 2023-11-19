@@ -3,7 +3,7 @@
     ob_start();
     session_start();
     if(isset($_SESSION["Username"])){
-        $pageTitle = 'HomePage';
+        $pageTitle = 'Dashboard';
         include 'init.php'; 
         
     }else{
@@ -14,7 +14,7 @@
     $etudiantDB = new C_etudiant();
     $database = new Database();
     
-    $classOptions = [];  // Initialize class options array
+    $classOptions = [];  
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $selectedDepartment = $_POST['codedepartement'] ?? null;
@@ -75,11 +75,7 @@
 
                     ?>
                 </select>
-                <?php
-                    // echo '<pre>';
-                    // echo print_r($classesByGroup);
-                    // echo '</pre>';
-                ?>
+                
             </div>
         </div>
 

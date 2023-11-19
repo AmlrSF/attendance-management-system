@@ -2,8 +2,8 @@
     ob_start();
     session_start();
     if(isset($_SESSION["Username"])){
-        include 'init.php';s
-        $pageTitle = 'Enseignants';
+        $pageTitle = 'Enseignant';
+        include 'init.php'; 
         
     }else{
         header('Location: index.php');
