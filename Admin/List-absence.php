@@ -26,14 +26,14 @@
         $selectedNomClasse = $_POST['nom_classe'] ?? null;
         
 
-        $absenceByMatiere = $statDB->listeAbsenceEtudiantParMatiere($selectedNomEtudiant, $selectedPrenomEtudiant, $selectedDateDebut, $selectedDateFin);
+       
 
         $absenceByEtudiant = $statDB->listeAbsenceEtudiant($selectedNomEtudiant, $selectedPrenomEtudiant, $selectedDateDebut, $selectedDateFin, $selectedNomClasse);
 
 
-        echo '<pre>';
-        print_r($absenceByEtudiant);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($absenceByEtudiant);
+        // echo '</pre>';
 
     }
 
@@ -91,48 +91,32 @@
 
 
 
-    <?php if (isset($absenceByMatiere) && !empty($absenceByMatiere)) : ?>
-        <h3 class="mt-4">Absence Details by Matiere</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nom Enseignant</th>
-                    <th>Date Absence</th>
-                    <th>Seance Absence</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($absenceByMatiere as $absence) : ?>
-                    <tr>
-                        <td><?= $absence['nom_enseignant']; ?></td>
-                        <td><?= $absence['date_absence']; ?></td>
-                        <td><?= $absence['seance_absence']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
+
 
     <?php if (isset($absenceByEtudiant) && !empty($absenceByEtudiant)) : ?>
-        <h3 class="mt-4">Absence Statistics by Matiere</h3>
-        <table class="table">
-            <thead>
+    <h3 class="mt-4">Absence Statistics by Matiere</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom Matiere</th>
+                <th>Nombre Absences</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($absenceByEtudiant as $absence) : ?>
                 <tr>
-                    <th>Nom Matiere</th>
-                    <th>Nombre Absences</th>
+                    <td><?= $absence['nom_matiere']; ?></td>
+                    <td>
+                        <!-- Generate a link with etudiantId and matiereId as parameters -->
+                        <a href="seance-detail.php?etudiantId=<?= $absence['CodeEtudiant']; ?>&matiereId=<?= $absence['CodeMatiere']; ?>">
+                            <?= $absence['nombre_absences']; ?>
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($absenceByEtudiant as $absence) : ?>
-                    <tr>
-                        <td><?= $absence['nom_matiere']; ?></td>
-                        <td><?= $absence['nombre_absences']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php endif; ?>
-</div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
 
 <div class="container mt-5">
     <h2 class="mb-4">All Fiche Absence</h2>

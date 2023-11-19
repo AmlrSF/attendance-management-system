@@ -35,12 +35,17 @@ class C_Stat extends Database
         return $this->getAllRecords($query, $params);
     }
     
+
+    
+    //list absence
     public function listeAbsenceEtudiant($nomEtudiant, $prenomEtudiant, $dateDebut, $dateFin, $nomClasse)
     {
         $query = "
             SELECT
                 m.NomMatiere AS nom_matiere,
-                COUNT(fs.CodeFicheAbsence) AS nombre_absences
+                COUNT(fs.CodeFicheAbsence) AS nombre_absences,
+                e.*,
+                m.*
             FROM
                 ficheabsence f
             JOIN

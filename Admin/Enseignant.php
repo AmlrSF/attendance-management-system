@@ -250,6 +250,8 @@
                         redirectHome("you will be directed To ", 'back', 3);
                     }
                 }
+            }else{
+                redirectHome("you will be directed To ", 'back', 3);
             }
         } else {
             $theMsg = '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
@@ -410,6 +412,7 @@
             // Display form errors
             foreach ($formErrors as $error) {
                 echo "<div class='alert alert-danger my-2 '>" . $error . "</div>";
+                
             }
 
 
@@ -435,6 +438,9 @@
                     echo '<div class="alert alert-danger">Error updating record.</div>';
                     redirectHome("You will be redirect to ","Enseignant.php",3);
                 }
+            }else{
+                
+                redirectHome("You will be redirect to ","Enseignant.php",3);
             }
             } else {
                 $theMsg = '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
