@@ -41,10 +41,10 @@
     <div class="row justify-content-center mt-5 ">
         <div class="col-md-6 col-lg-4">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="login" method="POST">
-                <h4 class="text-center mb-4">Admin Login</h4>
+                <h1 class="text-center mb-4">Admin Login</h1>
                 <input type="text" name="user" placeholder="Username" autocomplete="off" class="form-control mb-3" />
                 <input type="password" name="pass" placeholder="Password" autocomplete="off" class="form-control mb-3" />
-                <input type="submit" value="Login" class="btn btn-primary btn-block" />
+                <input type="submit" value="Login" class="btn w-100  btn-primary btn-block" />
             </form>
         </div>
     </div>

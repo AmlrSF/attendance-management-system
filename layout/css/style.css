@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+
+}
+body{
+    background-color: #f4f4f4;
+}
+
+a{
+    text-decoration: none;
+    
+}
+
+/* Default styles for the table */
+.dark-table {
+    /* Add your default styling here */
+}
+
+/* Media query for screens with a width of 1287px or less */
+@media (max-width: 1287px) {
+    .dark-table {
+        /* Add responsive styling here */
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+    }
+
+    .dark-table th, .dark-table td {
+        /* Add additional styles for table cells in responsive mode */
+        white-space: nowrap;
+    }
+}

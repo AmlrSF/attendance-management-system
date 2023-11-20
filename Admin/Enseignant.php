@@ -158,7 +158,8 @@
                     <a href="Enseignant.php" class="btn btn-primary">Enseignant List</a>
                 </div>
             </form>
-        </div><?php
+        </div>
+        <?php
     } else if($do == 'Insert'){
 
 
