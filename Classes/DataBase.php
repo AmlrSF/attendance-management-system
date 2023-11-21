@@ -156,7 +156,7 @@
         // Function to update userRoleId for a user
         public function updateUserRoleId($userId, $roleId) {
             // Assuming you have a users table with columns userId and userRoleId
-            $stmt = $this->conn->prepare("UPDATE users SET userRoleId = :roleId WHERE userId = :userId");
+            $stmt = $this->conn->prepare("UPDATE users SET userRoleId = :roleId WHERE user_id = :userId");
             $stmt->bindParam(':userId', $userId);
             $stmt->bindParam(':roleId', $roleId);
             

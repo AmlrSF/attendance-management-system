@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 $_SESSION['user'] = $username;
                 $_SESSION['role'] = $userData['role'];
                 $_SESSION['uid'] = $userData['user_id'];
+                $_SESSION['verified'] = false;
 
                 // Redirect to index.php after successful login
                 header('Location: registeration.php');

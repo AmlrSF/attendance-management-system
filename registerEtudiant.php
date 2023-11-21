@@ -8,7 +8,7 @@
     $database = new Database();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo '<h1 class="text-center mb-5 mt-4">Regiiter Etudiant</h1>';
+    echo '<h1 class="text-center mb-5 mt-4">ster Etudiant</h1>';
 
     echo '<div class="container mt-3">';
     $name = $_POST['name'];
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Validate Prenom
-    if (empty($prenom) || strlen($prenom) <div 4) {
+    if (empty($prenom) || strlen($prenom) < 4) {
         $formErrors[] = "Prenom can't be empty and should be at least 4 characters.";
     }
 
@@ -84,15 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($insertResult > 0) {
                
-                $username = $_SESSION['username'];
+                $userId = $_SESSION['uid'];
 
-                echo $insertResult. ' '.$username; 
 
-             
-                echo $database->getUserIdByUsername()
 
-                // $database->updateUserRoleId($userId, $insertResult);
+                $database->updateUserRoleId($userId, $insertResult);
 
+                $_SESSION['verified'] = true;
             
 
                 echo '<div class="alert mb-3 alert-success">Etudiant added successfully!</div>';
@@ -103,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-echo '</div>';
+echo '</>';
 ?>
 <?php
     include $tpl . "footer.php";

@@ -11,11 +11,11 @@
         exit();
     }
 
-    //  // Check if the user is not logged in
-    //  if (!isset($_SESSION['verif'])) {
-    //     header('Location: registerations.php');
-    //     exit();
-    // }
+    // Check if the user is not logged in
+    if (isset($_SESSION['verified']) && $_SESSION['verified'] == false) {
+        header('Location: registeration.php');
+        exit();
+    }
 
     
 ?>

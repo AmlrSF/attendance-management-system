@@ -14,7 +14,7 @@
     if (isset($_SESSION['role'])) {
         $userRole = $_SESSION['role']; 
 
-        if ($userRole == 3) { 
+        if ($userRole == 2) { 
         
             
             ?>
@@ -102,7 +102,7 @@
                 </div>
                 
             <?php  
-        } elseif ($userRole == 2) { 
+        } elseif ($userRole == 3) { 
             
             ?>
                 <!-- etudiant -->

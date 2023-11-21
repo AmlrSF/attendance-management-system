@@ -85,13 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if ($insertResult > 0) {
                 
-                    $username = $_SESSION['username'];
+                    $userId = $_SESSION['uid'];
 
-                    echo $insertResult. ' '.$username; 
+                    // echo $insertResult." ".$userId;
 
-                    $database->updateUserRoleId($userId, $insertResult); // Update the userRoleId with the new etudiant ID
+                    $database->updateUserRoleId($userId, $insertResult); 
 
-                
+                    $_SESSION['verified'] = true;
 
                     echo '<div class="alert mb-3 alert-success">Enseignant added successfully!</div>';
                 } else {
