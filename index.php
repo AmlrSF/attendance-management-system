@@ -17,12 +17,12 @@
         exit();
     }
 
+    $username = $_SESSION['user'];
     
 ?>
 
 <div class="container">
-    <h1 class='text-center mt-3 mb-5'>Get Deeper In Our Shop</h1>
-    <!-- Your content goes here -->
+    <h1 class='text-center mt-3 mb-5'>Welcome <?php echo $username; ?></h1>
 </div>
 
 <?php
