@@ -67,9 +67,9 @@
                     </tbody>
                 </table>
             </div>
-            <a href="Enseignant.php?do=Add" class="btn btn-primary">
+            <!-- <a href="Enseignant.php?do=Add" class="btn btn-primary">
                 <i class="fa fa-plus"></i> Add an Enseignant
-            </a>
+            </a> -->
         </div><?php
 
 
@@ -159,6 +159,7 @@
                 </div>
             </form>
         </div>
+        
         <?php
     } else if($do == 'Insert'){
 

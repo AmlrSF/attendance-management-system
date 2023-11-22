@@ -146,7 +146,36 @@
             }
         }
         
-        
+        function countMatieres() {
+            // Your SQL query to count matieres
+            $query = "SELECT COUNT(*) FROM matiere";
+            return $this->countItems($query);
+        }
+    
+        function countEnseignants() {
+            // Your SQL query to count enseignants
+            $query = "SELECT COUNT(*) FROM enseignant";
+            return $this->countItems($query);
+        }
+    
+        function countEtudiants() {
+            // Your SQL query to count etudiants
+            $query = "SELECT COUNT(*) FROM etudiant";
+            return $this->countItems($query);
+        }
+    
+        function countAbsences() {
+            // Your SQL query to count absences
+            $query = "SELECT COUNT(*) FROM ficheabsence";
+            return $this->countItems($query);
+        }
+    
+        function countItems($query) {  
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
+       
     }
 
 ?>

@@ -12,9 +12,7 @@ a{
 }
 
 /* Default styles for the table */
-.dark-table {
-    /* Add your default styling here */
-}
+
 
 /* Media query for screens with a width of 1287px or less */
 @media (max-width: 1287px) {
@@ -30,3 +28,4 @@ a{
         white-space: nowrap;
     }
 }
+
