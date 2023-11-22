@@ -8,9 +8,24 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <?php if (isset($_SESSION['user'])) : ?>
-                    <li class="nav-item">
-                        <a class="nav-link text-white-50 " href="Etudiants.php">Etudiants</a>
-                    </li>
+                    <?php if ($_SESSION['role'] == 3) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 " href="Etudiants.php">Etudiants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 " href="Etudiants.php">Enseignants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 " href="Etudiants.php">Matiere</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 " href="Manage-Etudiant.php">Manage Etudiant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 " href="Fiche-absence.php">Fiche absence</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item dropdown me-auto d-block d-lg-none">
                         <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo $_SESSION['user']; ?>
