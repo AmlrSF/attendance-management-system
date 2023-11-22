@@ -447,7 +447,7 @@
             } else {
                 $theMsg = '<div class="alert mt-5 alert-danger">You can\'t browse this page directly</div>';
                 redirectHome("You can't access to this page ","Enseignant.php",3);
-            }
+        }
 
         echo "</div>";
 
@@ -467,11 +467,11 @@
 
                     if ($deleteResult > 0) {
                         echo '<div class="alert mb-3 alert-success">Record deleted successfully!</div>';
-                        redirectHome("you will be redirect to ", 'Enseignant.php', 3);
+                        redirectHome("you will be redirect to ", 'Enseignant.php', 333333333);
 
                     } else {
                         echo '<div class="alert alert-danger">Error deleting record.</div>';
-                        redirectHome("you will be redirect to ", 'Enseignant.php', 3);
+                        redirectHome("you will be redirect to ", 'Enseignant.php', 333333333);
                     }
                 } else {
                     $theMsg = '<div class="alert mt-5 alert-danger">Deletion canceled. You can\'t browse this page directly</div>';

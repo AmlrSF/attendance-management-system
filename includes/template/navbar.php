@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container">
-        <a class="navbar-brand text-white" href="index.php">Absence</a>
+        <a class="navbar-brand text-white" href="index.php">Dashboard</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="text-white navbar-toggler-icon"></span>
         </button>
@@ -16,7 +16,7 @@
                             <?php echo $_SESSION['user']; ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
@@ -40,7 +40,7 @@
                 <?php echo $_SESSION['user']; ?>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="logout.php">Logout</a></li>

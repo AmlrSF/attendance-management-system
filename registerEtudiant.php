@@ -8,7 +8,7 @@
     $database = new Database();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo '<h1 class="text-center mb-5 mt-4">ster Etudiant</h1>';
+    echo '<h1 class="text-center mb-5 mt-4">register Etudiant</h1>';
 
     echo '<div class="container mt-3">';
     $name = $_POST['name'];
@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $_SESSION['verified'] = true;
             
+                header('Location: index.php');  
 
                 echo '<div class="alert mb-3 alert-success">Etudiant added successfully!</div>';
             } else {

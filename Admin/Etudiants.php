@@ -434,7 +434,7 @@
             
             }
         }    
-          echo "</div>";
+        echo "</div>";
         
     } else if($do == "Delete"){
         

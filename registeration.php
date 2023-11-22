@@ -11,6 +11,7 @@
     $etudiantDB = new C_etudiant();
     $database = new Database();
 
+   if(!$_SESSION['verified']){
     if (isset($_SESSION['role'])) {
         $userRole = $_SESSION['role']; 
 
@@ -189,6 +190,10 @@
         header('Location: login.php');
         exit(); 
     }
+   }else{
+    header('Location:index.php');
+    exit();
+   }
 ?>
 
 <?php

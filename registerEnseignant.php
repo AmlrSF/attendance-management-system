@@ -93,6 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $_SESSION['verified'] = true;
 
+                    header('Location: index.php'); 
+
                     echo '<div class="alert mb-3 alert-success">Enseignant added successfully!</div>';
                 } else {
                     echo '<div class="alert alert-danger">Error inserting enseignant record.</div>';

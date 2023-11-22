@@ -33,7 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 $_SESSION['user'] = $username;
                 $_SESSION['role'] = $userData['role'];
                 $_SESSION['uid'] = $userData['user_id'];
-                $_SESSION['verified'] = false;
+           
+
+                $userRoleId = $database->getUserRoleId($_SESSION['uid']); // You need to implement this method in your Database class
+
+                echo $userRoleId;
+
+                // Check if userRoleId has a value different from 0
+                $_SESSION['verified'] = ($userRoleId != 0);
 
                 // Redirect to index.php after successful login
                 header('Location: registeration.php');

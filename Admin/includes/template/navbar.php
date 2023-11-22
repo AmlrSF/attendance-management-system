@@ -15,7 +15,7 @@
                     <a class="nav-link text-white-50 " href="Etudiants.php">Etudiants</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white-50 " href="Etudiants.php">Etudiants</a>
+                    <a class="nav-link text-white-50 " href="Enseignant.php">Enseignant</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white-50 " href="Matieres.php">Matieres</a>
