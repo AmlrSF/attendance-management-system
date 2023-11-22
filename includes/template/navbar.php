@@ -10,13 +10,7 @@
                 <?php if (isset($_SESSION['user'])) : ?>
                     <?php if ($_SESSION['role'] == 3) : ?>
                         <li class="nav-item">
-                            <a class="nav-link text-white-50 " href="Etudiants.php">Etudiants</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white-50 " href="Etudiants.php">Enseignants</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white-50 " href="Etudiants.php">Matiere</a>
+                            <a class="nav-link text-white-50 " href="classmates.php">classmates</a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item">

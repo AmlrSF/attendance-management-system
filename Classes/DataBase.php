@@ -217,6 +217,20 @@
                 return 0;
             }
         }
+
+        public function getClassNameByCode($classCode) {
+            try {
+                $stmt = $this->conn->prepare("SELECT NomClass FROM class WHERE CodeClass = :classCode");
+                $stmt->bindParam(':classCode', $classCode);
+                $stmt->execute();
+    
+                return $stmt->fetchColumn();
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+    
     }
 
     

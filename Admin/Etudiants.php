@@ -68,7 +68,7 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
+        </div>
             <!-- <a href="Etudiants.php?do=Add" class="btn btn-primary">
             <i class="fa fa-plus"></i> Add an etudiant</a> -->
         </div> <?php 

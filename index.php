@@ -22,7 +22,7 @@
 ?>
 
 <div class="container">
-    <h1 class='text-center mt-3 mb-5'>Welcome <?php echo $username; ?></h1>
+    <h1 class='text-center mt-5 mb-5'>Welcome <?php echo $username; ?></h1>
 </div>
 
 <?php
