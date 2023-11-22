@@ -71,7 +71,7 @@
             <div class="col-md-3">
                 <div class="stat st-enseignants">
                     Total Enseignants
-                    <span><a href="enseignants.php"><?php echo $datadb->countEnseignants(); ?></a></span>
+                    <span><a href="enseignant.php"><?php echo $datadb->countEnseignants(); ?></a></span>
                 </div>
             </div>
             <div class="col-md-3">
