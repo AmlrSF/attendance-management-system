@@ -38,8 +38,7 @@
         $newUsername = $_POST['username'];
         $newPassword = $_POST['password'];
     
-        $hashpass = sha1($newPassword);
-        echo $newPassword." ".$newUsername;
+
 
         $formErrors = array();
     

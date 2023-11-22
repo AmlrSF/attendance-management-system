@@ -21,6 +21,9 @@
                     <a class="nav-link text-white-50 " href="Matieres.php">Matieres</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white-50 " href="recherche.php">Recherche absence</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white-50 " href="List-absence.php">List d'absence</a>
                 </li>
                 <li class="nav-item dropdown me-auto d-block d-lg-none">
@@ -28,7 +31,7 @@
                 <?php echo $_SESSION['Username'] ?>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item " href="#">Profile</a></li>
+                    <li><a class="dropdown-item " href="profile.php">Profile</a></li>
                     <li><a class="dropdown-item " href="#">settings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item " href="logout.php">Logout</a></li>
@@ -41,7 +44,7 @@
                     <?php echo $_SESSION['Username'] ?>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item " href="#">Profile</a></li>
+                    <li><a class="dropdown-item " href="profile.php">Profile</a></li>
                     <li><a class="dropdown-item " href="#">settings</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item " href="logout.php">Logout</a></li>

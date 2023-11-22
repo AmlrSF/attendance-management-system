@@ -175,7 +175,35 @@
             $stmt->execute();
             return $stmt->fetchColumn();
         }
-       
+        public function getUserById($userId) {
+            try {
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = :userId");
+                $stmt->bindParam(':userId', $userId);
+                $stmt->execute();
+    
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        public function updateUsernamePasswordById($userId, $newUsername, $newPassword) {
+            try {
+                $stmt = $this->conn->prepare("UPDATE users SET username = :username, password = :password WHERE user_id = :userId");
+    
+                $stmt->bindParam(':userId', $userId);
+                $stmt->bindParam(':username', $newUsername);
+                $stmt->bindParam(':password', sha1($newPassword)); // Use appropriate hashing method
+    
+                $stmt->execute();
+    
+                return $stmt->rowCount();
+            } catch (PDOException $e) {
+                echo "Update failed: " . $e->getMessage();
+                return 0;
+            }
+        }
     }
 
 ?>

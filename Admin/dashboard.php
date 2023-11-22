@@ -83,9 +83,13 @@
             <div class="col-md-3">
                 <div class="stat st-absences">
                     Total Absences
-                    <span><a href="absences.php"><?php echo $datadb->countAbsences(); ?></a></span>
+                    <span><a href="list-absence.php"><?php echo $datadb->countAbsences(); ?></a></span>
                 </div>
             </div>
         </div>
     </div>   
 </div>
+
+<?php 
+include $tpl . "footer.php";
+?>
