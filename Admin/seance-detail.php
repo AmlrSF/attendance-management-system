@@ -9,13 +9,14 @@ if(isset($_SESSION["Username"])){
     exit();
 }
 
-$statDB = new C_Stat();
-
 if (isset($_GET['etudiantId']) && isset($_GET['matiereId'])) {
     $etudiantId = $_GET['etudiantId'];
     $matiereId = $_GET['matiereId'];
 
-
+    
+    $statDB = new C_Stat();
+    $matiere = $statDB->getRecordById("matiere", "CodeMatiere", $matiereId);
+        
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $dateDebut = $_POST['date_debut'] ?? null;
@@ -54,7 +55,7 @@ if (isset($_GET['etudiantId']) && isset($_GET['matiereId'])) {
 
     // Display the absence statistics table
     if (!empty($absenceByMatiere)) {
-        echo '<h3 class="mt-4">Absence Statistics by Matiere</h3>';
+        echo '<h3 class="mt-4">Absence Statistics by Matiere <span class="fw-9">'.$matiere["NomMatiere"].'</h3>';
         echo '<table class="table">';
         echo '<thead>';
         echo '<tr>';
@@ -75,6 +76,7 @@ if (isset($_GET['etudiantId']) && isset($_GET['matiereId'])) {
 
         echo '</tbody>';
         echo '</table>';
+        echo '<div>le nombre total des abscences est <span class="fw-500">'. count($absenceByMatiere).'</span></div>';
     } else {
         echo '<p>No absence records found.</p>';
     }

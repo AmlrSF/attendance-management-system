@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $matiereId = $_POST['matiere'];
     $date = $_POST['date'];
     $enseignantId = $_POST['enseignant'];
-    echo $studentId." ".$seanceId." ".$studentId." ".$studentDetails['CodeClass']." ".$date." ".$enseignantId;
+    //echo $studentId." ".$seanceId." ".$studentId." ".$studentDetails['CodeClass']." ".$date." ".$enseignantId;
 
 
     //Mark the student absent
@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result) {
         // Successful absence marking
-        echo "Student marked absent successfully.";
+        echo "<div class='alert alert-danger'>Student marked absent successfully.</div>";
     } else {
         // Handle the case where marking absent failed
-        echo "Failed to mark student absent.";
+        echo "<div class='alert alert-danger'>ailed to mark student absent..</div>";;
     }
 }
 
