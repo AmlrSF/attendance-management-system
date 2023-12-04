@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+include 'init.php';
 
 // Check if the user is not logged in
 if (!isset($_SESSION['user'])) {

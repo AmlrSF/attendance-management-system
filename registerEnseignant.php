@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $formErrors = array();
 
+ 
     // Validate Nom
     if (empty($nom) || strlen($nom) < 4) {
         $formErrors[] = "Nom can't be empty and should be at least 4 characters.";

@@ -2,7 +2,7 @@
 
 ob_start();
 session_start();
-
+include 'init.php';
 // Check if the user is not logged in
 if (!isset($_SESSION['user'])) {
     header('Location: Login.php');
@@ -16,7 +16,8 @@ if (isset($_SESSION['verified']) && $_SESSION['verified'] == false) {
 }
 
 $statDB = new C_Stat();
-
+$etudiantDB = new C_etudiant();
+$enseignantDB = new C_enseignant();
 $allFicheAbsence = $statDB->getAllFicheAbsence();
 
 
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo '</pre>';
 
 }
+
 
 
 
@@ -84,6 +86,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" class="form-control" name="nom_classe" id="inputNomClasse" required>
             </div>
         </div>
+        <div class="mb-3 row">
+            <label for="inputClass" class="col-sm-2 col-form-label">Class Name</label>
+                <div class="col-sm-10 col-md-4">
+                    <select required="required" name="class" class="form-control" id="inputClass">
+                    <!-- Placeholder option -->
+                    <option value="" disabled selected>Select a class</option>
+
+                    <?php
+                    // Fetch class options from the database
+                    $classOptions = $etudiantDB->getAllRecords("SELECT * FROM class");
+
+              
+
+                    // Loop through the options and generate <option> elements
+                    foreach ($classOptions as $class) {
+                        echo '<option value="' . $class['CodeClass'] . '">' . $class['NomClass'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
 
         <div class="form-group row">
             <div class="col-sm-10 offset-sm-2">
@@ -93,10 +116,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
 
+    <?php
+        echo $_SESSION['uid'];
+        $ensigantDep = $enseignantDB->getEnseignantById("CodeEnseignant",$_SESSION['uid']);
+        // echo $enseignantDB;
+        echo "<pre>";
+        print_r($ensigantDep);
+        echo "</pre>";
+
+    ?>
 
 
 
     <?php if (isset($absenceByEtudiant) && !empty($absenceByEtudiant)) : ?>
+        
         <h3 class="mt-4">Absence Statistics by Matiere</h3>
         <table class="table">
             <thead>
