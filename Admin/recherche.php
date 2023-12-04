@@ -108,7 +108,7 @@
                     <td><?= $absence['nom_matiere']; ?></td>
                     <td>
                         <!-- Generate a link with etudiantId and matiereId as parameters -->
-                        <a href="seance-detail.php?etudiantId=<?= $absence['CodeEtudiant']; ?>&matiereId=<?= $absence['CodeMatiere']; ?>">
+                        <a href="seance-detail.php?etudiantId=<?= $absence['CodeEtudiant']; ?>&matiereId=<?= $absence['CodeMatiere']; ?>&dateDebut=<?= $selectedDateDebut; ?>&dateFin=<?= $selectedDateFin; ?>">
                             <?= $absence['nombre_absences']; ?>
                         </a>
                     </td>
