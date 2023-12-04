@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result) {
         // Successful absence marking
-        echo "<div class='alert alert-danger'>Student marked absent successfully.</div>";
+        echo "<div class='alert alert-success'>Student marked absent successfully.</div>";
     } else {
         // Handle the case where marking absent failed
         echo "<div class='alert alert-danger'>ailed to mark student absent..</div>";;

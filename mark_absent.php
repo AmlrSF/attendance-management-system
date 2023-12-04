@@ -40,10 +40,10 @@
 
         if ($result) {
             // Successful absence marking
-            echo "Student marked absent successfully.";
+            echo "<div class='alert alert-success'>Student marked absent successfully.</div>";
         } else {
             // Handle the case where marking absent failed
-            echo "Failed to mark student absent.";
+            echo "<div class='alert alert-danger'>ailed to mark student absent..</div>";;
         }
     }
 

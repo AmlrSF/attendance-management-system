@@ -86,27 +86,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" class="form-control" name="nom_classe" id="inputNomClasse" required>
             </div>
         </div>
-        <div class="mb-3 row">
+        <!-- <div class="mb-3 row">
             <label for="inputClass" class="col-sm-2 col-form-label">Class Name</label>
                 <div class="col-sm-10 col-md-4">
                     <select required="required" name="class" class="form-control" id="inputClass">
-                    <!-- Placeholder option -->
+                   
                     <option value="" disabled selected>Select a class</option>
 
-                    <?php
+                    //<?php
                     // Fetch class options from the database
-                    $classOptions = $etudiantDB->getAllRecords("SELECT * FROM class");
+                    //$classOptions = $etudiantDB->getAllRecords("SELECT * FROM class");
 
               
 
                     // Loop through the options and generate <option> elements
-                    foreach ($classOptions as $class) {
-                        echo '<option value="' . $class['CodeClass'] . '">' . $class['NomClass'] . '</option>';
-                    }
+                    //foreach ($classOptions as $class) {
+                        //echo '<option value="' . $class['CodeClass'] . '">' . $class['NomClass'] . '</option>';
+                    //}
                     ?>
                 </select>
             </div>
-        </div>
+        </div> -->
 
         <div class="form-group row">
             <div class="col-sm-10 offset-sm-2">
