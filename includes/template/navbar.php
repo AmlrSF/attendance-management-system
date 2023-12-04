@@ -19,6 +19,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-white-50 " href="Fiche-absence.php">Fiche absence</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50 " href="recherche.php">Recherche Absence</a>
+                        </li>
+                       
                     <?php endif; ?>
                     <li class="nav-item dropdown me-auto d-block d-lg-none">
                         <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
