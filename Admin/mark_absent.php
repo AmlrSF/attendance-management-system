@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Mark the student absent
     $result = $etudiantDB->markEtudiantAbsent($studentId, $matiereId, $enseignantId, $seanceId, $studentDetails['CodeClass'], $date);
 
+    echo '<div class="container mt-5">';
     if ($result) {
         // Successful absence marking
         echo "<div class='alert alert-success'>Student marked absent successfully.</div>";
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle the case where marking absent failed
         echo "<div class='alert alert-danger'>ailed to mark student absent..</div>";;
     }
+    echo '</div class="container">';
 }
 
 ?>
