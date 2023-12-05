@@ -23,5 +23,5 @@ The system uses a MySQL database with the following tables:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/attendance-management-system.git
+   [clone https://github.com/yourusername/attendance-management-system.git](https://github.com/AmirSouaF/attendance-management-system.git)https://github.com/AmirSouaF/attendance-management-system.git
 
