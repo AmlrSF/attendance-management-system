@@ -1,3 +1,5 @@
+This is a simple PHP-based Attendance Management System that provides CRUD operations for teachers, students, subjects, and attendance tracking. The system also includes user authentication and registration.
+
 # Attendance Management System
 
 This is a simple PHP-based Attendance Management System that provides CRUD operations for teachers, students, subjects, and attendance tracking. The system also includes user authentication and registration.
